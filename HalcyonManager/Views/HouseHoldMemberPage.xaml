@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HalcyonManager.Views.HouseHoldMemberPage"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"  
+             xmlns:behavior="clr-namespace:HalcyonManager.Behaviors"
+             x:DataType="viewmodels:HouseHoldMemberViewModel"
+             BackgroundImageSource="sky.jpg">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Spacing="4" Padding="15" BackgroundColor="#40568d">
+                <Label FontSize="Large" TextColor="White" Text="{Binding Name}"></Label>
+            </StackLayout>
+
+            <ScrollView Padding="15" VerticalOptions="FillAndExpand">
+                <Frame CornerRadius="10"  Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding SelectedHouseHoldMember}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" Text="Name" FontSize="Medium" />
+                                <Entry ClearButtonVisibility="WhileEditing" TextColor="Black" MaxLength="50"  Text="{Binding SelectedHouseHoldMember.Name, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" Text="Email" FontSize="Medium" />
+                                <Entry ClearButtonVisibility="WhileEditing" TextColor="Black" MaxLength="50"  Text="{Binding SelectedHouseHoldMember.Email, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" Text="Phone" FontSize="Medium" />
+                                <Entry Keyboard="Numeric" Text="{Binding SelectedHouseHoldMember.PhoneNumber, Mode=TwoWay}">
+                                    <Entry.Behaviors>
+                                        <behavior:MaskedBehavior Mask="(XXX) XXX-XXXX" />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0">
+                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="1">
+                                <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

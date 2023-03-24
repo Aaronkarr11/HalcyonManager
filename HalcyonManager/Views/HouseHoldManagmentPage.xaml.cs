@@ -3,15 +3,14 @@ using HalcyonManager.ViewModels;
 
 namespace HalcyonManager.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemRequestPage : ContentPage
+    public partial class HouseHoldManagmentPage : ContentPage
     {
-        ItemRequestViewModel _viewModel;
-        public ItemRequestPage()
+        HouseHoldManagmentViewModel _viewModel;
+        public HouseHoldManagmentPage()
         {
             InitializeComponent();
             var service = DependencyService.Get<IHalcyonManagementClient>();
-            BindingContext = _viewModel = new ItemRequestViewModel(service);
+            BindingContext = _viewModel = new HouseHoldManagmentViewModel(service);
         }
 
         protected override void OnAppearing()

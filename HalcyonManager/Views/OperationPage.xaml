@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HalcyonManager.Views.OperationPage"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"
+             x:DataType="viewmodels:OperationViewModel"
+             BackgroundImageSource="sky.jpg">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Spacing="4" Padding="15" BackgroundColor="#40568d">
+                <Label FontSize="Large" TextColor="White" Text="{Binding Name}"></Label>
+            </StackLayout>
+
+            <ScrollView Padding="15" VerticalOptions="FillAndExpand">
+                <Frame CornerRadius="10"  Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#40568d">
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding SelectedOperation}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start" Text="Name" FontSize="Medium" />
+                                <Entry ClearButtonVisibility="WhileEditing" TextColor="White" MaxLength="50"  Text="{Binding SelectedOperation.Title, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" TextColor="White" Text="Description" FontSize="Medium" />
+                                <Editor AutoSize="TextChanges" TextColor="White" PlaceholderColor="White" MaxLength="75" Text="{Binding SelectedOperation.Description, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                                <Label FontAttributes="Bold" TextColor="White" Text="Start Date" FontSize="Medium" />
+                                <DatePicker TextColor="White" Date="{Binding SelectedOperation.StartDate, Mode=TwoWay}" FontSize="Medium"  />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+                                <Label FontAttributes="Bold" TextColor="White" Grid.Row="4" Grid.Column="1"  Text="Target Date" FontSize="Medium" />
+                                <DatePicker Grid.Row="5" TextColor="White" Grid.Column="1"  Date="{Binding SelectedOperation.TargetDate, Mode=TwoWay}" FontSize="Medium" Margin="0"  />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" TextColor="White" Grid.Row="7" Grid.Column="0" Text="Icon" FontSize="Medium" />
+                                <Entry ClearButtonVisibility="WhileEditing" TextColor="White" MaxLength="50"   Text="{Binding SelectedOperation.Icon, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="0">
+                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="1">
+                                <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Vertical">
+                                <Button Style="{StaticResource CompleteButton}" Command="{Binding CompleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Vertical">
+                                <Button Style="{StaticResource DeleteButton}" Command="{Binding DeleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

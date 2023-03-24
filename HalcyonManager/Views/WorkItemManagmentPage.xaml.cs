@@ -3,14 +3,15 @@ using HalcyonManager.ViewModels;
 
 namespace HalcyonManager.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WorkItemManagmentPage : ContentPage
     {
-        HomeViewModel _viewModel;
-        public MainPage()
+        WorkItemManagmentViewModel _viewModel;
+        public WorkItemManagmentPage()
         {
             InitializeComponent();
             var service = DependencyService.Get<IHalcyonManagementClient>();
-            BindingContext = _viewModel = new HomeViewModel(service);
+            BindingContext = _viewModel = new WorkItemManagmentViewModel(service);
         }
 
         protected override void OnAppearing()
@@ -22,11 +23,6 @@ namespace HalcyonManager.Views
         private void HelpButton_Clicked(object sender, EventArgs e)
         {
             Shell.Current.GoToAsync($"HelpPage");
-        }
-
-        private void AboutButton_Clicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Version 1.0.0.10", $"Copyright {DateTime.Now.Year} - Aaron Karr - made with love <3", "OK");
         }
     }
 }

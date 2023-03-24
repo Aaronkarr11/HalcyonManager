@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HalcyonManager.Views.ProjectPage"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodels:ProjectViewModel"
+             BackgroundImageSource="sky.jpg">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Spacing="4" Padding="15" BackgroundColor="#ccd5f0">
+                <Label FontSize="Large" TextColor="White" Text="{Binding Name}"></Label>
+            </StackLayout>
+
+            <ScrollView Padding="20" VerticalOptions="FillAndExpand">
+                <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding SelectedProject}" Padding="15" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" HorizontalTextAlignment="Start" Text="Name" FontSize="Medium" />
+                                <Entry ClearButtonVisibility="WhileEditing" MaxLength="50" Grid.ColumnSpan="2" Text="{Binding SelectedProject.Title, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label FontAttributes="Bold" Text="Description" FontSize="Medium" />
+                                <Editor AutoSize="TextChanges"  MaxLength="75" Text="{Binding SelectedProject.Description, Mode=TwoWay}" FontSize="Medium" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                                <Label FontAttributes="Bold" Text="Start Date" FontSize="Medium" />
+                                <DatePicker Date="{Binding SelectedProject.StartDate, Mode=TwoWay}" FontSize="Medium" Margin="0"  />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+                                <Label FontAttributes="Bold"  Text="Target Date" FontSize="Medium" />
+                                <DatePicker  Date="{Binding SelectedProject.TargetDate, Mode=TwoWay}" FontSize="Medium" Margin="0"  />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0" >
+                                <Label FontAttributes="Bold" Text="State" FontSize="Medium" />
+                                <Picker x:Name="StatePicker" Title="State" TextColor="{Binding StateColor, Mode=TwoWay}" SelectedItem="{Binding SelectedProject.State, Mode=TwoWay}" ItemsSource="{Binding StateList, Mode=TwoWay}" >
+                                    <Picker.Behaviors>
+                                        <toolkit:EventToCommandBehavior
+                            EventName="SelectedIndexChanged"
+                            Command="{Binding ReselectStateColorCommand}"
+                            CommandParameter="{Reference StatePicker}" />
+                                    </Picker.Behaviors>
+                                </Picker>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="1" >
+                                <Label FontAttributes="Bold" Text="Location" FontSize="Medium" />
+                                <Picker x:Name="LocationCategorySeverity" Title="Location" SelectedItem="{Binding SelectedProject.LocationCategory}" ItemsSource="{Binding LocationCategoryList, Mode=TwoWay}" >
+                                </Picker>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="0">
+                                <Label FontAttributes="Bold" Text="Severity" FontSize="Medium" />
+                                <Picker   x:Name="PickerSeverity" Title="Severity" SelectedItem="{Binding SelectedProject.Severity, Mode=TwoWay}" ItemsSource="{Binding SeverityList, Mode=TwoWay}">
+                                </Picker>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="1">
+                                <Label FontAttributes="Bold" Text="Priority" FontSize="Medium" />
+                                <Picker x:Name="PickerPriority" Title="Priority" SelectedItem="{Binding SelectedProject.Priority, Mode=TwoWay}" ItemsSource="{Binding PriorityList, Mode=TwoWay}">
+                                </Picker>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="5" Grid.Column="0">
+                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="5" Grid.Column="1">
+                                <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Grid.Row="6" Grid.Column="0" Orientation="Vertical">
+                                <Button Style="{StaticResource CompleteButton}" Command="{Binding CompleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                            <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Vertical">
+                                <Button Style="{StaticResource DeleteButton}" Command="{Binding DeleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

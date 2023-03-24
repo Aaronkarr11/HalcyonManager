@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:model="clr-namespace:HalcyonSoft.SharedEntities;assembly=HalcyonSoft.SharedEntities" 
+             xmlns:controls="clr-namespace:HalcyonManager.Controls"
+             xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels" 
+             x:DataType="viewmodels:WorkItemManagmentViewModel"
+             x:Class="HalcyonManager.Views.WorkItemManagmentPage"
+             Title="Work Item Management"
+             BackgroundImageSource="sky.jpg">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Help" Clicked="HelpButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="WorkTaskControlTemplate">
+            <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                   BackgroundColor="{TemplateBinding CardColor}"
+                   BorderColor="{TemplateBinding BorderColor}"
+                   CornerRadius="5"
+                   HasShadow="True"
+                   Padding="10"
+                   Margin="5"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="4" />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Text="{Binding WorkTaskTitle}"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start" />
+                    <BoxView Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="{Binding BorderColor}"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+                    <Label Grid.Column="0"
+                           Grid.Row="2"
+                           Grid.ColumnSpan="2"
+                           Text="{Binding WorkTaskDescription}"
+                           FontAttributes="Bold"
+                           FontSize="Caption"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start" />
+                    <Button Style="{StaticResource EditWorkItemButton}" 
+                            Grid.Row="2"
+                            Padding="0,0,0,0"
+                            Margin="5,5,5,5"
+                            FontSize="10"
+                            Grid.Column="2"
+                            Text="Edit">
+                        <Button.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                            EventName="Clicked"
+                            Command="{Binding EditCommand}"
+                            CommandParameter="{Binding EditCommandParameter}" />
+                        </Button.Behaviors>
+                    </Button>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <Style TargetType="controls:WorkTaskCard">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource WorkTaskControlTemplate}" />
+        </Style>
+
+        <ControlTemplate x:Key="ProjectControlTemplate">
+            <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                   BackgroundColor="{TemplateBinding CardColor}"
+                   BorderColor="{TemplateBinding BorderColor}"
+                   CornerRadius="5"
+                   HasShadow="True"
+                   Padding="25"
+                   Margin="5"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="4" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="75" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Text="{Binding WorkTaskTitle}"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start" />
+                    <BoxView Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="{Binding BorderColor}"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+                    <Label Grid.Column="0"
+                           Grid.Row="2"
+                           Grid.ColumnSpan="2"
+                           Text="{Binding WorkTaskDescription}"
+                           FontAttributes="Bold"
+                           FontSize="Caption"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start" />
+                    <Button Style="{StaticResource EditWorkItemButton}" 
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HeightRequest="10"
+                            WidthRequest="10"
+                            Text="Edit">
+                        <Button.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                            EventName="Clicked"
+                            Command="{Binding EditCommand}"
+                            CommandParameter="{Binding EditCommandParameter}" />
+                        </Button.Behaviors>
+                    </Button>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <Style TargetType="controls:ProjectCard">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource ProjectControlTemplate}" />
+        </Style>
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#40568d" Spacing="20" Padding="15" IsVisible="{Binding ShowPicker, Mode=TwoWay}">
+                <Picker x:Name="MyPicker" TextColor="White" TitleColor="White" Title="Select an Operation" ItemsSource="{Binding OperationList}" ItemDisplayBinding="{Binding Title}" >
+                    <Picker.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="SelectedIndexChanged"
+                            Command="{Binding GetSelectedOperationsCommand}"
+                            CommandParameter="{Reference MyPicker}" />
+                    </Picker.Behaviors>
+                </Picker>
+            </StackLayout>
+
+
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout BindableLayout.ItemsSource="{Binding WorkItemHierarchy}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#40568d">
+                                <StackLayout>
+                                    <StackLayout x:DataType="model:OperationHierarchy" Orientation="Vertical">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35" />
+                                                <RowDefinition Height="25" />
+                                                <RowDefinition Height="35" />
+                                                <RowDefinition Height="10" />
+                                            </Grid.RowDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0" TextColor="White" Grid.ColumnSpan="6" Text="{Binding Title}" FontAttributes="Bold" FontSize="Small" />
+                                            <Label Grid.Row="1" Grid.Column="0" TextColor="White" Grid.ColumnSpan="6" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
+                                            <Button
+                                          Style="{StaticResource EditOperationButton}" 
+                                          Grid.Row="2" 
+                                          Grid.RowSpan="3"
+                                          Grid.Column="0" 
+                                          Grid.ColumnSpan="2"
+                                          Text="Edit Operation"
+                                          FontSize="16"
+                                          FontAttributes="Bold"
+                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=EditOperationCommand}"
+                                          CommandParameter="{Binding .}">
+                                            </Button>
+                                            <Button
+                                          Style="{StaticResource NewWorkItemButton}" 
+                                          Grid.Row="2" 
+                                          Grid.RowSpan="2"
+                                          Grid.Column="3" 
+                                          Grid.ColumnSpan="3"
+                                          Text="New Project"
+                                          FontSize="16"
+                                          FontAttributes="Bold"
+                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=NewProjectCommand}"
+                                          CommandParameter="{Binding .}">
+                                            </Button>
+                                        </Grid>
+
+                                        <StackLayout BindableLayout.ItemsSource="{Binding ProjectHierarchy}">
+
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
+                                                        <StackLayout x:DataType="model:ProjectHierarchy" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+
+                                                            <Grid Margin="0,10,0,0">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="50" />
+                                                                    <ColumnDefinition Width="50" />
+                                                                    <ColumnDefinition Width="50" />
+                                                                    <ColumnDefinition Width="50" />
+                                                                    <ColumnDefinition Width="25" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="20" />
+                                                                    <RowDefinition Height="20" />
+                                                                    <RowDefinition Height="20" />
+                                                                    <RowDefinition Height="20" />
+                                                                    <RowDefinition Height="10" />
+                                                                    <RowDefinition Height="25" />
+                                                                </Grid.RowDefinitions>
+
+                                                                <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="5" Text="{Binding Title}" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Medium" />
+
+                                                                <Label Grid.Row="1" Grid.Column="0"  Grid.RowSpan="3"  Grid.ColumnSpan="4" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
+                                                                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="Target Date:" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Default" />
+                                                                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0" Text="{Binding TargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
+                                                                <Button
+                                                                    Style="{StaticResource EditWorkItemButton}" 
+                                                                    Grid.Row="4" 
+                                                                    Grid.RowSpan="2"
+                                                                    Grid.Column="0" 
+                                                                    Grid.ColumnSpan="2"
+                                                                    Text="Edit Project"
+                                                                    FontSize="10"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=EditProjectCommand}"
+                                                                    CommandParameter="{Binding .}">
+                                                                </Button>
+                                                                <Button
+                                                                    Style="{StaticResource NewWorkItemButton}" 
+                                                                    Grid.Row="4" 
+                                                                    Grid.RowSpan="2"
+                                                                    Grid.Column="3" 
+                                                                    Grid.ColumnSpan="3"
+                                                                    Text="New Work Task"
+                                                                    FontSize="10"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=NewWorkTaskCommand}"
+                                                                    CommandParameter="{Binding .}">
+                                                                </Button>
+                                                            </Grid>
+
+
+                                                            <StackLayout BindableLayout.ItemsSource="{Binding WorkTaskHierarchy}">
+                                                                <BindableLayout.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackLayout x:DataType="model:WorkTaskModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+
+                                                                            <controls:WorkTaskCard BorderColor="DarkGray"
+                                                                WorkTaskTitle="{Binding Title}"
+                                                                WorkTaskDescription="{Binding Description}"
+                                                                CardColor="#f7f9fe"
+                                                                EditCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=EditWorkTaskCommand}"
+                                                                EditCommandParameter="{Binding .}"
+                                                                ControlTemplate="{StaticResource WorkTaskControlTemplate}" />
+
+                                                                        </StackLayout>
+                                                                    </DataTemplate>
+                                                                </BindableLayout.ItemTemplate>
+                                                            </StackLayout>
+
+
+                                                        </StackLayout>
+
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </Frame>
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+            </ScrollView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

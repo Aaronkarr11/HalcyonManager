@@ -1,41 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HalcyonManager.Views.MainPage">
+             xmlns:vm="clr-namespace:HalcyonManager.ViewModels"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             x:Class="HalcyonManager.Views.MainPage"
+             x:DataType="vm:HomeViewModel"
+             Title="{Binding Title}"
+             BackgroundImageSource="sky.jpg">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Help" Clicked="HelpButton_Clicked"/>
+        <ToolbarItem Text="About" Clicked="AboutButton_Clicked"/>
+    </ContentPage.ToolbarItems>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+        <StackLayout BackgroundColor="White" Margin="0,10,0,0" Grid.Row="0">
+            <Label FontSize="Medium" TextColor="Blue" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Work Task Dashboard"  BackgroundColor="White" ></Label>
+        </StackLayout>
+        <StackLayout  BackgroundColor="White" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+            <Label FontSize="Medium"  FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding BarGraphTitle}"  BackgroundColor="White"></Label>
+            <lvc:CartesianChart VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" Series="{Binding BarSeries}"
+                  LegendPosition="Bottom"
+                  XAxes="{Binding BarXAxes}"
+                  YAxes="{Binding BarYAxes}">
+            </lvc:CartesianChart>
+        </StackLayout>
 
-        </VerticalStackLayout>
-    </ScrollView>
+
+
+        <StackLayout BackgroundColor="White" Grid.Row="2">
+            <Label FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding PieGraphTitle}"  BackgroundColor="White"></Label>
+            <lvc:PieChart  VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Series="{Binding Series}" 
+                      LegendPosition="Right"
+                      TooltipPosition="Right"
+                      />
+        </StackLayout>
+        <StackLayout BackgroundColor="White" Grid.Row="3">
+            <Label FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding LineGraphTitle}"  BackgroundColor="White"></Label>
+            <lvc:CartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                                Series="{Binding SeriesCollection}"
+                                XAxes="{Binding XAxes}"
+                                YAxes="{Binding YAxes}"/>
+        </StackLayout>
+
+
+
+
+
+    </Grid>
 
 </ContentPage>

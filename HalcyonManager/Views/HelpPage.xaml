@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"
+             x:DataType="viewmodels:ItemRequestViewModel"
+             x:Class="HalcyonManager.Views.HelpPage"
+             Title="Help"
+             BackgroundImageSource="sky.jpg">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView Padding="20" VerticalOptions="FillAndExpand">
+                <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#f7f9fe">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" MinimumWidthRequest="100" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label FontSize="Large" FontAttributes="Bold">
+                                Overview
+                            </Label>
+                            <Label FontSize="Small">
+                                Use this tool to view assigned house work, create/complete house work, and much more. Use Household Management to manage members of the house. They can then be assigned to Work Tasks.
+                            </Label>
+                            <Label FontSize="Small">
+                                Work Items are a general term to describe any item/level of work. Not to be confused with "Work Task!" Below are the various Work Items.
+                            </Label>
+                        </StackLayout>
+                        <BoxView Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="Black"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+                        <StackLayout Orientation="Vertical" MinimumWidthRequest="100" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label FontSize="Medium" FontAttributes="Bold">
+                                Operation
+                            </Label>
+                            <Label FontSize="Small" Margin="0,0,0,5">
+                                A high-level work item. This may be perpetual, or temporary. It acts as a top-level parent for related work items. It is mostly used to define and organize house renovations or major projects.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Title:
+                            </Label>
+                            <Label FontSize="Small">
+                                The name of the Operation. It contains the prefix "Operation."
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Description:
+                            </Label>
+                            <Label FontSize="Small">
+                                A description that best describes the Operation.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Start Date:
+                            </Label>
+                            <Label FontSize="Small">
+                                The start date of the operation. It can be modified as needed.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Target Date:
+                            </Label>
+                            <Label FontSize="Small">
+                                The operation's projected completion date. It can be modified as needed (not ideal).
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Icon:
+                            </Label>
+                            <Label FontSize="Small">
+                                The name of an Icon used for the Operation. It is not currently used.
+                            </Label>
+                        </StackLayout>
+                        <BoxView Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="Black"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+                        <StackLayout Orientation="Vertical" MinimumWidthRequest="100" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label FontSize="Medium" FontAttributes="Bold">
+                                Project
+                            </Label>
+                            <Label FontSize="Small" Margin="0,0,0,5">
+                                A temporary, mid-level work item. It acts as a mid-level parent for compartmentalizing child Work Tasks. Think of it as a way to group related work items to meet an end goal (e.g. "New Garden Bed"). It can also be used as a temporary "bucket" of work items. For example, there could be a project called "Fall Clean-up 2021" that would contain continuously added Work Tasks until it is completed by year end.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Title:
+                            </Label>
+                            <Label FontSize="Small">
+                                The name of the Project. It should be short
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Description:
+                            </Label>
+                            <Label FontSize="Small">
+                                A description that best describes the Project.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Location:
+                            </Label>
+                            <Label FontSize="Small">
+                                The primary location of the house for the Project.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                State:
+                            </Label>
+                            <Label FontSize="Small">
+                                The state of the project. It can either be New, In Progress, or Done.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Start Date:
+                            </Label>
+                            <Label FontSize="Small">
+                                The start date of the project. It can be modified as needed.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Target Date:
+                            </Label>
+                            <Label FontSize="Small">
+                                The project's projected completion date. It can be modified as needed (not ideal).
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Priority:
+                            </Label>
+                            <Label FontSize="Small">
+                                The priority of the project. It can be an estimate and is a scale 1-4. With 1 being highest.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Severity:
+                            </Label>
+                            <Label FontSize="Small">
+                                How serious is the Project? How greatly does the Project affect the house and household?
+                            </Label>
+                        </StackLayout>
+                        <BoxView Grid.Row="5"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="Black"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+                        <StackLayout Orientation="Vertical" MinimumWidthRequest="100" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label FontSize="Medium" FontAttributes="Bold">
+                                Work Task
+                            </Label>
+                            <Label FontSize="Small" Margin="0,0,0,5">
+                                A temporary, low-level work item. It is used to define basic housework tasks. It can be simple or complex. It is usually assigned to an individual household member (created in the HouseHold Management configuration in the App Settings), but it can also be a "group task" too.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Title:
+                            </Label>
+                            <Label FontSize="Small">
+                                The name of the Work Task.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Description:
+                            </Label>
+                            <Label FontSize="Small">
+                                A description that best describes the Work Task.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Assignment:
+                            </Label>
+                            <Label FontSize="Small">
+                                The household member that the Work Task is assigned too.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Send SMS:
+                            </Label>
+                            <Label FontSize="Small">
+                                If checked, sends a text message (SMS) to whomever the work task is asigned to.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                State:
+                            </Label>
+                            <Label FontSize="Small">
+                                The state of the work task. It can either be New, In Progress, or Done.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Start Date:
+                            </Label>
+                            <Label FontSize="Small">
+                                The start date of the work task. It can be modified as needed.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Target Date:
+                            </Label>
+                            <Label FontSize="Small">
+                                The work task's projected completion date. It can be modified as needed.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Priority:
+                            </Label>
+                            <Label FontSize="Small">
+                                The priority of the work task. It can be an estimate and is a scale 1-4. With 1 being highest.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Effort:
+                            </Label>
+                            <Label FontSize="Small">
+                                How much effort is required for completion? It can be an estimate and is a scale 1-10. With 10 being highest.
+                            </Label>
+                            <Label FontAttributes="Bold" FontSize="Small">
+                                Risk:
+                            </Label>
+                            <Label FontSize="Small">
+                                Does the Work Task involve risk? This can mean personal wellbeing or risk to the house.
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+            </ScrollView>
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

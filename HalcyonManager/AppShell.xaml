@@ -7,32 +7,26 @@
     xmlns:views="clr-namespace:HalcyonManager.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="LightSkyBlue" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="LightSkyBlue" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="Blue"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
-            </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
-        </ResourceDictionary>
-    </Shell.Resources>
-
     <TabBar>
-        <Tab Title="Home" IsVisible="True" Icon="icon_gear.png" >
+        <Tab Title="Home" IsVisible="True">
             <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
         </Tab>
-        <Tab Title="Items" IsVisible="True" Icon="icon_gear.png">
+        <!--<Tab Title="Work" Icon="icon_clipboard.png">
+            <ShellContent Title="Work Item Overview"
+                           ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
+            <ShellContent Title="Work Task Priorities"
+                           ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
+        </Tab>-->
+        <Tab Title="Work Item Overview" IsVisible="True">
+            <ShellContent ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
+        </Tab>
+        <Tab Title="Work Item Priorities" IsVisible="True">
+            <ShellContent ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
+        </Tab>
+        <Tab Title="Items" IsVisible="True">
             <ShellContent ContentTemplate="{DataTemplate views:ItemRequestPage}" />
         </Tab>
-        <Tab Title="Settings" IsVisible="True" Icon="icon_gear.png">
+        <Tab Title="Settings" IsVisible="True">
             <ShellContent ContentTemplate="{DataTemplate views:ConfigurationPage}" />
         </Tab>
     </TabBar>

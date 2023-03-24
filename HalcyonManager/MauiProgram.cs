@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Halcyon.Clients;
+using HalcyonManager.Services;
+using CommunityToolkit.Maui;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace HalcyonManager;
 
@@ -8,17 +12,17 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseSkiaSharp(true)
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
-
+        builder.Services.AddSingleton<IAlertService, AlertService>();
+        builder.Services.AddTransient<IHalcyonManagementClient, HalcyonManagementClient>();
 		return builder.Build();
 	}
 }
