@@ -14,9 +14,11 @@ namespace HalcyonManager.ViewModels
         public WorkTaskViewModel(IHalcyonManagementClient transactionServices)
         {
             HouseHoldMembers = new List<string>();
+            DeviceFontSize = Helpers.ReturnDeviceFontSize();
 
             _transactionServices = transactionServices;
             CancelCommand = new Command(OnCancel);
+
 
             SaveCommand = new Command((obj) =>
             {
@@ -98,6 +100,13 @@ namespace HalcyonManager.ViewModels
         {
             get => _selectedWorkTask;
             set => SetProperty(ref _selectedWorkTask, value);
+        }
+
+        private string _deviceFontSize;
+        public string DeviceFontSize
+        {
+            get => _deviceFontSize;
+            set => SetProperty(ref _deviceFontSize, value);
         }
 
         private string _name;

@@ -20,6 +20,7 @@ namespace HalcyonManager.ViewModels
         {
             _transactionServices = transactionServices;
             CancelCommand = new Command(OnCancel);
+            DeviceFontSize = Helpers.ReturnDeviceFontSize();
 
             SaveCommand = new Command((obj) =>
             {
@@ -92,6 +93,13 @@ namespace HalcyonManager.ViewModels
             {
 
             }
+        }
+
+        private string _deviceFontSize;
+        public string DeviceFontSize
+        {
+            get => _deviceFontSize;
+            set => SetProperty(ref _deviceFontSize, value);
         }
 
         private ProjectModel _selectedProject;
