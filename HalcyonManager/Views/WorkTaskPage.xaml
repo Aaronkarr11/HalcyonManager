@@ -45,7 +45,7 @@
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="2" Grid.RowSpan="2"  Grid.Column="0">
                                 <Label FontAttributes="Bold" Text="Assignment"  FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="AssignmentPicker" BackgroundColor="White"  SelectedIndex="{Binding SelectedWorkTask.Name, Mode=TwoWay}" ItemsSource="{Binding HouseHoldMembers, Mode=TwoWay}" >
+                                <Picker x:Name="AssignmentPicker" HorizontalOptions="Start" WidthRequest="150" BackgroundColor="White"  SelectedIndex="{Binding SelectedWorkTask.Name, Mode=TwoWay}" ItemsSource="{Binding HouseHoldMembers, Mode=TwoWay}" >
                                 </Picker>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">

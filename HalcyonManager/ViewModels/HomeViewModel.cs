@@ -15,11 +15,9 @@ namespace HalcyonManager.ViewModels
         {
             _transactionServices = transactionServices;
 
-            if (DeviceInfo.Platform != DevicePlatform.WinUI)
-            {
                 var name = "Welcome!";
                 Title = name;
-            }
+            
         }
 
         public async void OnAppearing()
