@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels" 
              x:DataType="viewmodels:WorkItemManagmentViewModel"
              x:Class="HalcyonManager.Views.WorkItemManagmentPage"
-             Title="Work Item Management"
+             Title="{Binding SelectedOperation}"
              BackgroundImageSource="sky.jpg">
 
     <ContentPage.ToolbarItems>
@@ -150,7 +150,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout BackgroundColor="#40568d" Spacing="20" Padding="15" IsVisible="{Binding ShowPicker, Mode=TwoWay}">
-                <Picker x:Name="MyPicker" TextColor="Black" BackgroundColor="White" TitleColor="White" Title="Select an Operation" ItemsSource="{Binding OperationList}" ItemDisplayBinding="{Binding Title}" >
+                <Picker x:Name="MyPicker" TextColor="Black" BackgroundColor="White" TitleColor="White" Title="Select an Operation"  ItemsSource="{Binding OperationList}"  ItemDisplayBinding="{Binding Title}" >
                     <Picker.Behaviors>
                         <toolkit:EventToCommandBehavior
                             EventName="SelectedIndexChanged"
@@ -249,7 +249,7 @@
                                                                 <Label Grid.Row="1"></Label>
                                                                 <Label Grid.Row="2" Grid.Column="0"   Grid.RowSpan="2"  Grid.ColumnSpan="3" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
                                                                 <Label Grid.Row="3"></Label>
-                                                                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="Target Date:" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Default" />
+                                                                <Label Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Text="Target Date:" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Default" />
                                                                 <Label Grid.Row="4" Grid.Column="4" Margin="0,0,0,0" Text="{Binding TargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
                                                                 <Button
                                                                     Style="{StaticResource EditWorkItemButton}" 
@@ -275,17 +275,17 @@
                                                                     CommandParameter="{Binding .}">
                                                                 </Button>
                                                                 <Label Grid.Row="5"></Label>
-                                                              
+
                                                             </Grid>
 
 
 
                                                             <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BindableLayout.ItemsSource="{Binding WorkTaskHierarchy}">
-                                                                    <BindableLayout.ItemTemplate>
-                                                                        <DataTemplate>
-                                                                            <StackLayout x:DataType="model:WorkTaskModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                                                <BindableLayout.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackLayout x:DataType="model:WorkTaskModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
 
-                                                                                <controls:WorkTaskCard BorderColor="DarkGray"
+                                                                            <controls:WorkTaskCard BorderColor="DarkGray"
                                                                 WorkTaskTitle="{Binding Title}"
                                                                 WorkTaskDescription="{Binding Description}"
                                                                 CardColor="#f7f9fe"
@@ -293,11 +293,11 @@
                                                                 EditCommandParameter="{Binding .}"
                                                                 ControlTemplate="{StaticResource WorkTaskControlTemplate}" />
 
-                                                                            </StackLayout>
-                                                                        </DataTemplate>
-                                                                    </BindableLayout.ItemTemplate>
-                                                                </StackLayout>
-                                                          
+                                                                        </StackLayout>
+                                                                    </DataTemplate>
+                                                                </BindableLayout.ItemTemplate>
+                                                            </StackLayout>
+
 
                                                         </StackLayout>
 

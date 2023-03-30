@@ -38,6 +38,7 @@ namespace HalcyonManager.ViewModels
             _selectedOperation = null;
             OperationList = new List<OperationModel>();
             WorkItemHierarchy = new List<OperationHierarchy>();
+            DeviceFontSize = Helpers.ReturnDeviceFontSize();
 
             EditWorkTaskCommand = new Command((workTask) =>
             {
@@ -86,6 +87,15 @@ namespace HalcyonManager.ViewModels
                         _selectedOperation = item;
                         var result = await _transactionServices.GetWorkItemHierarchy(DeviceInfo.Name.RemoveSpecialCharacters());
                         WorkItemHierarchy = result.Where(e => e.PartitionKey == item.PartitionKey && e.RowKey == item.RowKey).ToList();
+
+                        if (String.IsNullOrEmpty(SelectedOperation))
+                        {
+                            SelectedOperation = "Work Item Management ";
+                        }
+                        else
+                        {
+                            SelectedOperation = "Work Item Management: " + item.Title;
+                        }
                     }
                 }
             }
@@ -231,6 +241,15 @@ namespace HalcyonManager.ViewModels
             {
                 OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
             }
+
+            if (String.IsNullOrEmpty(SelectedOperation))
+            {
+                SelectedOperation = "Work Item Management ";
+            }
+            else
+            {
+                SelectedOperation = "Work Item Management: " + _selectedOperation.Title;
+            }
             ShowPicker = true;
             IsBusy = false;
         }
@@ -256,5 +275,21 @@ namespace HalcyonManager.ViewModels
             get => _showPicker;
             set => SetProperty(ref _showPicker, value);
         }
+
+        private string _deviceFontSize;
+        public string DeviceFontSize
+        {
+            get => _deviceFontSize;
+            set => SetProperty(ref _deviceFontSize, value);
+        }
+
+        private string _retainedSelectedOperation;
+        public string SelectedOperation
+        {
+            get => _retainedSelectedOperation;
+            set => SetProperty(ref _retainedSelectedOperation, value);
+        }
+
+
     }
 }
