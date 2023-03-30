@@ -32,39 +32,36 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" Text="Name" FontSize="Medium" />
                                 <Entry ClearButtonVisibility="WhileEditing" TextColor="Black" MaxLength="50"  Text="{Binding SelectedOperation.Title, Mode=TwoWay}" FontSize="Medium" />
                             </StackLayout>
-                            <StackLayout Grid.Row="1">
-                                <Label></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackLayout Margin="0,5,0,0" Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" TextColor="Black" Text="Description" FontSize="Medium" />
                                 <Editor AutoSize="TextChanges" TextColor="Black" PlaceholderColor="White" MaxLength="75" Text="{Binding SelectedOperation.Description, Mode=TwoWay}" FontSize="Medium" />
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                            <StackLayout Margin="0,5,0,0" Orientation="Vertical" Grid.Row="2" Grid.Column="0">
                                 <Label FontAttributes="Bold" TextColor="Black" Text="Start Date" FontSize="Medium" />
                                 <DatePicker TextColor="Black" Date="{Binding SelectedOperation.StartDate, Mode=TwoWay}" FontSize="Medium"  />
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+                            <StackLayout Margin="0,15,0,0" Orientation="Vertical" Grid.Row="2" Grid.Column="1">
                                 <Label FontAttributes="Bold" TextColor="Black" Grid.Row="4" Grid.Column="1"  Text="Target Date" FontSize="Medium" />
                                 <DatePicker Grid.Row="5" TextColor="Black" Grid.Column="1"  Date="{Binding SelectedOperation.TargetDate, Mode=TwoWay}" FontSize="Medium" Margin="0"  />
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackLayout Margin="0,0,0,0" Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" TextColor="Black" Grid.Row="7" Grid.Column="0" Text="Icon" FontSize="Medium" />
                                 <Entry ClearButtonVisibility="WhileEditing" TextColor="Black" MaxLength="50"   Text="{Binding SelectedOperation.Icon, Mode=TwoWay}" FontSize="Medium" />
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="0">
+                            <StackLayout Margin="0,25,0,0" Orientation="Vertical" Grid.Row="4" Grid.Column="0">
                                 <Button Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="1">
+                            <StackLayout Margin="0,25,0,0" Orientation="Vertical" Grid.Row="4" Grid.Column="1">
                                 <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Vertical">
+                            <StackLayout Margin="0,15,0,0" Grid.Row="5" Grid.Column="0" Orientation="Vertical">
                                 <Button Style="{StaticResource CompleteButton}" Command="{Binding CompleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Vertical">
+                            <StackLayout Margin="0,15,0,0" Grid.Row="5" Grid.Column="1" Orientation="Vertical">
                                 <Button Style="{StaticResource DeleteButton}" Command="{Binding DeleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>
