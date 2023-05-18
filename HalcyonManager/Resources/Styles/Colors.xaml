@@ -4,9 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">blue</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Primary">#03045e</Color>
+    <Color x:Key="Secondary">#90e0ef</Color>
+    <Color x:Key="Tertiary">#0077b6</Color>
+    <Color x:Key="Forms">#e2eafc</Color>
+    <Color x:Key="ButtonEdit">#31572c</Color>
+    <Color x:Key="ButtonNew">#023e8a</Color>
+    <Color x:Key="ButtonSave">#5fa8d3</Color>
+    <Color x:Key="ButtonDelete">#e63946</Color>
+    <Color x:Key="ButtonCancel">#ff9f1c</Color>
+    <Color x:Key="ButtonComplete">#ffc857</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -20,6 +27,11 @@
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="FormsBrush" Color="{StaticResource Forms}"/>
+    <SolidColorBrush x:Key="ButtonEditBrush" Color="{StaticResource ButtonEdit}"/>
+    <SolidColorBrush x:Key="ButtonNewBrush" Color="{StaticResource ButtonNew}"/>
+    <SolidColorBrush x:Key="ButtonCompleteBrush" Color="{StaticResource ButtonComplete}"/>
+    <SolidColorBrush x:Key="ButtonCancelBrush" Color="{StaticResource ButtonCancel}"/>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
     <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>

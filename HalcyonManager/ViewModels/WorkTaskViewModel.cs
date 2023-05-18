@@ -47,8 +47,8 @@ namespace HalcyonManager.ViewModels
             BuildDropDownLists();
         }
 
-        private string _workTask;
-        public string WorkTask
+        private WorkTaskModel _workTask;
+        public WorkTaskModel WorkTask
         {
             get
             {
@@ -61,12 +61,12 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public async void LoadItemId(string rawWorkTask)
+        public async void LoadItemId(WorkTaskModel rawWorkTask)
         {
             try
             {  
                 HouseHoldMembers = await GetHouseHold();
-                SelectedWorkTask = JsonConvert.DeserializeObject<WorkTaskModel>(rawWorkTask);
+                SelectedWorkTask = rawWorkTask;
                 if (String.IsNullOrEmpty(SelectedWorkTask.Name))
                 {
                     SelectedWorkTask.Name = "N/A";
@@ -311,8 +311,9 @@ namespace HalcyonManager.ViewModels
 
             workTask.Completed = 0;
             workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/CreateWorkTask?code=3jM7Httk73UcdxbIVdiFM7231TbUnZdbWqyTl1tXFRwfEcpd/Dx//g==";
-            await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(workTask));
+            string urlDev = "http://localhost:7071/api/CreateOrUpdateWorkItem";
+            //string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/CreateWorkTask?code=3jM7Httk73UcdxbIVdiFM7231TbUnZdbWqyTl1tXFRwfEcpd/Dx//g==";
+            await _transactionServices.AzureFunctionPostTransaction(urlDev, JsonConvert.SerializeObject(workTask));
             await Shell.Current.GoToAsync("..");
         }
     }

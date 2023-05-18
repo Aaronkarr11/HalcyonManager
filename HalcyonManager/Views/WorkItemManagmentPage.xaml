@@ -56,7 +56,7 @@
                            FontSize="Micro"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
-                    <Button BackgroundColor="Blue"
+                    <Button BackgroundColor="{StaticResource ButtonNew}"
                             Grid.Row="2"
                             Padding="0,0,0,0"
                             HeightRequest="40"
@@ -149,7 +149,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout BackgroundColor="#40568d" Spacing="20" Padding="15" IsVisible="{Binding ShowPicker, Mode=TwoWay}">
+            <StackLayout BackgroundColor="{StaticResource Primary}" Spacing="20" Padding="15" IsVisible="{Binding ShowPicker, Mode=TwoWay}">
                 <Picker x:Name="MyPicker" TextColor="Black" BackgroundColor="White" TitleColor="White" Title="Select an Operation"  ItemsSource="{Binding OperationList}"  ItemDisplayBinding="{Binding Title}" >
                     <Picker.Behaviors>
                         <toolkit:EventToCommandBehavior
@@ -165,7 +165,7 @@
                 <StackLayout BindableLayout.ItemsSource="{Binding WorkItemHierarchy}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#40568d">
+                            <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="{StaticResource Tertiary}">
                                 <StackLayout>
                                     <StackLayout x:DataType="model:OperationHierarchy" Orientation="Vertical">
                                         <Grid>
@@ -189,7 +189,7 @@
                                             <Label Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" TextColor="White" Grid.ColumnSpan="2" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
                                             <Label Grid.Row="3"></Label>
                                             <Button
-                                          Style="{StaticResource EditOperationButton}" 
+                                          Style="{StaticResource ButtonEdit}" 
                                           Grid.Row="4"    
                                           Grid.Column="0"
                                           Grid.RowSpan="2"
@@ -203,7 +203,7 @@
                                           CommandParameter="{Binding .}">
                                             </Button>
                                             <Button
-                                         BackgroundColor="Green"
+                                          BackgroundColor="{StaticResource ButtonEdit}"
                                           Grid.Row="4" 
                                           Grid.RowSpan="2"
                                           HorizontalOptions="End"
@@ -224,7 +224,7 @@
 
                                             <BindableLayout.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Frame CornerRadius="10" Margin="10, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
+                                                    <Frame CornerRadius="10" Margin="10, 5, 5, 5" HasShadow="True" BackgroundColor="{StaticResource Secondary}">
                                                         <StackLayout x:DataType="model:ProjectHierarchy" Orientation="Vertical" HorizontalOptions="FillAndExpand">
 
                                                             <Grid Margin="0,0,0,0">
@@ -263,7 +263,7 @@
                                                                     CommandParameter="{Binding .}">
                                                                 </Button>
                                                                 <Button
-                                                                    BackgroundColor="Green"
+                                                                    BackgroundColor="{StaticResource ButtonEdit}"
                                                                     Grid.Row="5" 
                                                                     Grid.RowSpan="3"
                                                                     HeightRequest="40"
@@ -288,7 +288,7 @@
                                                                             <controls:WorkTaskCard BorderColor="DarkGray"
                                                                 WorkTaskTitle="{Binding Title}"
                                                                 WorkTaskDescription="{Binding Description}"
-                                                                CardColor="#f7f9fe"
+                                                                CardColor="{StaticResource Forms}"
                                                                 EditCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=EditWorkTaskCommand}"
                                                                 EditCommandParameter="{Binding .}"
                                                                 ControlTemplate="{StaticResource WorkTaskControlTemplate}" />

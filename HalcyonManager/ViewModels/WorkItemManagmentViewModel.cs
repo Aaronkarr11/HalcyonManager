@@ -109,46 +109,67 @@ namespace HalcyonManager.ViewModels
         {
 
 
-            var workTask = (WorkTaskModel)sender;
-            WorkTaskModel workTaskModel = new WorkTaskModel
+            try
             {
-                Title = workTask.Title,
-                Name = workTask.Name.Trim(),
-                Risk = workTask.Risk ?? "3 - Low",
-                SendSMS = workTask.SendSMS,
-                RowKey = workTask.RowKey,
-                State = workTask.State,
-                PartitionKey = workTask.PartitionKey,
-                Effort = workTask.Effort == 0 ? 1 : workTask.Effort,
-                ParentPartitionKey = workTask.ParentPartitionKey,
-                ParentRowKey = workTask.ParentRowKey,
-                Priority = workTask.Priority == 0 ? 1 : workTask.Priority,
-                StartDate = workTask.StartDate,
-                TargetDate = workTask.TargetDate,
-                Description = workTask.Description,
-                Completed = 0
-            };
-            await Shell.Current.GoToAsync($"WorkTaskPage?WorkTask={JsonConvert.SerializeObject(workTaskModel)}");
+                var workTask = (WorkTaskModel)sender;
+                WorkTaskModel workTaskModel = new WorkTaskModel
+                {
+                    Title = workTask.Title,
+                    Name = workTask.Name.Trim(),
+                    Risk = workTask.Risk ?? "3 - Low",
+                    SendSMS = workTask.SendSMS,
+                    RowKey = workTask.RowKey,
+                    State = workTask.State,
+                    PartitionKey = workTask.PartitionKey,
+                    Effort = workTask.Effort == 0 ? 1 : workTask.Effort,
+                    ParentPartitionKey = workTask.ParentPartitionKey,
+                    ParentRowKey = workTask.ParentRowKey,
+                    Priority = workTask.Priority == 0 ? 1 : workTask.Priority,
+                    StartDate = workTask.StartDate,
+                    TargetDate = workTask.TargetDate,
+                    Description = workTask.Description,
+                    Completed = 0
+                };
+                var result = JsonConvert.SerializeObject(workTaskModel);
+                var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "WorkTask", workTaskModel }
+                    };
+                await Shell.Current.GoToAsync($"WorkTaskPage", navigationParameter);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         async void ExecuteNewWorkTaskCommand(object sender)
         {
-            var parentProject = (ProjectHierarchy)sender;
-
-            WorkTaskModel workTaskModel = new WorkTaskModel
+            try
             {
-                ParentPartitionKey = parentProject.PartitionKey,
-                ParentRowKey = parentProject.RowKey,
-                State = "New",
-                Risk = "3 - Low",
-                SendSMS = false,
-                Effort = 1,
-                Priority = 4,
-                StartDate = DateTime.Now,
-                TargetDate = DateTime.Now,
-                Completed = 0
-            };
-            await Shell.Current.GoToAsync($"WorkTaskPage?WorkTask={JsonConvert.SerializeObject(workTaskModel)}");
+                var parentProject = (ProjectHierarchy)sender;
+
+                WorkTaskModel workTaskModel = new WorkTaskModel
+                {
+                    ParentPartitionKey = parentProject.PartitionKey,
+                    ParentRowKey = parentProject.RowKey,
+                    State = "New",
+                    Risk = "3 - Low",
+                    SendSMS = false,
+                    Effort = 1,
+                    Priority = 4,
+                    StartDate = DateTime.Now,
+                    TargetDate = DateTime.Now,
+                    Completed = 0
+                };
+                await Shell.Current.GoToAsync($"WorkTaskPage?WorkTask={JsonConvert.SerializeObject(workTaskModel)}");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         async void ExecuteNewProjectCommand(object sender)

@@ -15,6 +15,7 @@ namespace HalcyonManager.ViewModels
         {
             _transactionServices = transactionServices;
             CancelCommand = new Command(OnCancel);
+            DeviceFontSize = Helpers.ReturnDeviceFontSize();
 
             SaveCommand = new Command((obj) =>
             {
@@ -103,6 +104,13 @@ namespace HalcyonManager.ViewModels
         {
             get => _showDeleteButton;
             set => SetProperty(ref _showDeleteButton, value);
+        }
+
+        private string _deviceFontSize;
+        public string DeviceFontSize
+        {
+            get => _deviceFontSize;
+            set => SetProperty(ref _deviceFontSize, value);
         }
 
         public Command SaveCommand { get; }
