@@ -39,6 +39,7 @@ namespace HalcyonManager.ViewModels
             OperationList = new List<OperationModel>();
             WorkItemHierarchy = new List<OperationHierarchy>();
             DeviceFontSize = Helpers.ReturnDeviceFontSize();
+            DeviceButtonWidth = Helpers.ReturnDeviceButtonWidth();
 
             EditWorkTaskCommand = new Command((workTask) =>
             {
@@ -269,7 +270,7 @@ namespace HalcyonManager.ViewModels
             }
             else
             {
-                SelectedOperation = "Work Item Management: " + _selectedOperation.Title;
+                SelectedOperation = "Work Item Management: " + _selectedOperation?.Title;
             }
             ShowPicker = true;
             IsBusy = false;
@@ -297,11 +298,11 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _showPicker, value);
         }
 
-        private string _deviceFontSize;
-        public string DeviceFontSize
+        private double _deviceButtonWidth;
+        public double DeviceButtonWidth
         {
-            get => _deviceFontSize;
-            set => SetProperty(ref _deviceFontSize, value);
+            get => _deviceButtonWidth;
+            set => SetProperty(ref _deviceButtonWidth, value);
         }
 
         private string _retainedSelectedOperation;

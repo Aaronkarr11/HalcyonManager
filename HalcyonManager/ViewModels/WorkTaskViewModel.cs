@@ -102,13 +102,6 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _selectedWorkTask, value);
         }
 
-        private string _deviceFontSize;
-        public string DeviceFontSize
-        {
-            get => _deviceFontSize;
-            set => SetProperty(ref _deviceFontSize, value);
-        }
-
         private string _name;
         public string Name
         {

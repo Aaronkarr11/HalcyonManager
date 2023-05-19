@@ -2,7 +2,6 @@
 using HalcyonManagement.Entities;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
-
 namespace HalcyonManager.ViewModels
 {
     [QueryProperty(nameof(Operation), nameof(Operation))]
@@ -106,12 +105,6 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _showDeleteButton, value);
         }
 
-        private string _deviceFontSize;
-        public string DeviceFontSize
-        {
-            get => _deviceFontSize;
-            set => SetProperty(ref _deviceFontSize, value);
-        }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }

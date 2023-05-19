@@ -1,4 +1,5 @@
-﻿using HalcyonManager.Views;
+﻿using HalcyonManager.ViewModels;
+using HalcyonManager.Views;
 
 namespace HalcyonManager;
 
@@ -7,6 +8,7 @@ public partial class AppShell : Shell
 	public AppShell()
 	{
         InitializeComponent();
+        BindingContext = new AppShellViewModel();
         Routing.RegisterRoute(nameof(ProjectPage), typeof(ProjectPage));
         Routing.RegisterRoute(nameof(OperationPage), typeof(OperationPage));
         Routing.RegisterRoute(nameof(WorkTaskPage), typeof(WorkTaskPage));

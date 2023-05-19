@@ -5,22 +5,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HalcyonManager"
     xmlns:views="clr-namespace:HalcyonManager.Views"
+    xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"
+    x:DataType="viewmodels:AppShellViewModel"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
         <Tab Title="Home" IsVisible="True">
             <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
         </Tab>
-        <!--<Tab Title="Work" Icon="icon_clipboard.png">
+        <Tab Title="Work" Icon="icon_clipboard.png" IsVisible="{Binding DeviceNavigationMobile}">
             <ShellContent Title="Work Item Overview"
                            ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
             <ShellContent Title="Work Task Priorities"
                            ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
-        </Tab>-->
-        <Tab Title="Work Item Overview" IsVisible="True">
+        </Tab>
+        <Tab Title="Work Item Overview" IsVisible="{Binding DeviceNavigationDesktop}">
             <ShellContent ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
         </Tab>
-        <Tab Title="Work Item Priorities" IsVisible="True">
+        <Tab Title="Work Item Priorities" IsVisible="{Binding DeviceNavigationDesktop}">
             <ShellContent ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
         </Tab>
         <Tab Title="Items" IsVisible="True">

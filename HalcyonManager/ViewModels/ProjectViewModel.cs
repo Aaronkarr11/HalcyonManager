@@ -95,13 +95,6 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        private string _deviceFontSize;
-        public string DeviceFontSize
-        {
-            get => _deviceFontSize;
-            set => SetProperty(ref _deviceFontSize, value);
-        }
-
         private ProjectModel _selectedProject;
         public ProjectModel SelectedProject
         {

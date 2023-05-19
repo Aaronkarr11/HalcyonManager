@@ -30,6 +30,7 @@
                         <RowDefinition Height="50" />
                         <RowDefinition Height="10"  />
                         <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="250" />
@@ -50,20 +51,20 @@
                              HorizontalOptions="Fill" />
                     <Label Grid.Column="0"
                            Grid.Row="2"
-                           Grid.ColumnSpan="2"
+                           Grid.ColumnSpan="3"
                            Text="{Binding WorkTaskDescription}"
                            FontAttributes="Bold"
                            FontSize="Micro"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <Button BackgroundColor="{StaticResource ButtonNew}"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Padding="0,0,0,0"
-                            HeightRequest="40"
-                            FontSize="Micro"
-                            Grid.Column="2"
-                            Grid.ColumnSpan="2"
-                            HorizontalOptions="End"
+                            HeightRequest="25"
+                            WidthRequest="{Binding DeviceButtonWidth}"
+                            FontSize="Small"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="1"
                             Text="Edit">
                         <Button.Behaviors>
                             <toolkit:EventToCommandBehavior
@@ -193,11 +194,11 @@
                                           Grid.Row="4"    
                                           Grid.Column="0"
                                           Grid.RowSpan="2"
-                                          WidthRequest="200"
+                                          WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
                                           HorizontalOptions="Start"
-                                                HeightRequest="40"
+                                          HeightRequest="40"
                                           Text="Edit Operation"
-                                          FontSize="16"
+                                          FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceFontSize}"
                                           FontAttributes="Bold"
                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=EditOperationCommand}"
                                           CommandParameter="{Binding .}">
@@ -208,10 +209,10 @@
                                           Grid.RowSpan="2"
                                           HorizontalOptions="End"
                                           Grid.Column="2" 
-                                          WidthRequest="200"
+                                          WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
                                           HeightRequest="40"
                                           Text="New Project"
-                                          FontSize="16"
+                                          FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceFontSize}"
                                           FontAttributes="Bold"
                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=NewProjectCommand}"
                                           CommandParameter="{Binding .}">
@@ -247,18 +248,20 @@
 
                                                                 <Label Grid.Row="0" Grid.RowSpan="2" Margin="0,0,0,0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Medium" />
                                                                 <Label Grid.Row="1"></Label>
-                                                                <Label Grid.Row="2" Grid.Column="0"   Grid.RowSpan="2"  Grid.ColumnSpan="3" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
+                                                                <Label Grid.Row="2" Grid.Column="0"   Grid.RowSpan="2"  Grid.ColumnSpan="4" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
                                                                 <Label Grid.Row="3"></Label>
                                                                 <Label Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Text="Target Date:" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Default" />
-                                                                <Label Grid.Row="4" Grid.Column="0" Margin="0,0,-25,0" Text="{Binding TargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
+                                                                <Label Grid.Row="4" Grid.Column="3" Margin="0,0,0,0" Text="{Binding TargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
                                                                 <Button
                                                                     Style="{StaticResource EditWorkItemButton}" 
                                                                     Grid.Row="5" 
                                                                     Grid.RowSpan="3" 
                                                                     Grid.Column="0"
-                                                                     HeightRequest="40"
+                                                                    HeightRequest="40"
+                                                                    WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
                                                                     FontSize="Small"
-                                                                    Text="Edit Project"                                           
+                                                                    Text="Edit Project"
+                                                                    HorizontalOptions="Start"
                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=EditProjectCommand}"
                                                                     CommandParameter="{Binding .}">
                                                                 </Button>
@@ -267,10 +270,12 @@
                                                                     Grid.Row="5" 
                                                                     Grid.RowSpan="3"
                                                                     HeightRequest="40"
-                                                                    Grid.Column="4" 
-                                                                    Grid.ColumnSpan="3"
+                                                                    Grid.Column="4"
+                                                                    WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
+                                                                    Grid.ColumnSpan="2"
                                                                     Text="New Work Task"
                                                                     FontSize="Small"
+                                                                    HorizontalOptions="End"
                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=NewWorkTaskCommand}"
                                                                     CommandParameter="{Binding .}">
                                                                 </Button>

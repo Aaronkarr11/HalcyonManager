@@ -15,12 +15,15 @@ namespace HalcyonManager.ViewModels
         public WorkTaskPrioritiesViewModel(IHalcyonManagementClient transactionServices)
         {
             _transactionServices = transactionServices;
+            DeviceFontSize = Helpers.ReturnDeviceFontSize();
 
             EditWorkTaskCommand = new Command((workTask) =>
             {
                 ExecuteEditWorkTaskCommand(workTask);
             });
         }
+
+
 
 
         public async void OnAppearing()

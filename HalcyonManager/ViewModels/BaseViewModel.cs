@@ -19,6 +19,13 @@ namespace HalcyonManager.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
-     
+
+        private string _deviceFontSize;
+        public string DeviceFontSize
+        {
+            get => _deviceFontSize;
+            set => SetProperty(ref _deviceFontSize, value);
+        }
+
     }
 }
