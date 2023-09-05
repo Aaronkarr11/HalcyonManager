@@ -1,12 +1,7 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace HalcyonManager.ViewModels
 {
@@ -53,7 +48,11 @@ namespace HalcyonManager.ViewModels
         async void ExecuteNewMember()
         {
             HouseHoldMember member = new HouseHoldMember();
-            await Shell.Current.GoToAsync($"HouseHoldMemberPage?Member={JsonConvert.SerializeObject(member)}");
+            var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "Member", member }
+                    };
+            await Shell.Current.GoToAsync($"HouseHoldMemberPage", navigationParameter);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -91,7 +90,7 @@ namespace HalcyonManager.ViewModels
             try
             {
                 HouseHoldList = await _transactionServices.GetHouseHoldMembers(DeviceInfo.Name.RemoveSpecialCharacters());
-                if (HouseHoldList.Count() == 0)
+                if (HouseHoldList.Count() == 0 || HouseHoldList == null)
                 {
                     ShowMessage = true;
                 }
@@ -118,7 +117,11 @@ namespace HalcyonManager.ViewModels
                     Email = houseHold.Email,
                     PhoneNumber = houseHold.PhoneNumber.RemoveSpecialCharacters()
                 };
-                await Shell.Current.GoToAsync($"HouseHoldMemberPage?Member={JsonConvert.SerializeObject(sentHouseHold)}");
+                var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "WorkTask", sentHouseHold }
+                    };
+                await Shell.Current.GoToAsync($"HouseHoldMemberPage", navigationParameter);
             }
             catch (Exception ex)
             {

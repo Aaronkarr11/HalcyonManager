@@ -1,12 +1,6 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HalcyonManager.ViewModels
 {
@@ -38,8 +32,8 @@ namespace HalcyonManager.ViewModels
             return !String.IsNullOrWhiteSpace(_selectedHouseHoldMember.Name);
         }
 
-        private string _member;
-        public string Member
+        private HouseHoldMemberTableTemplate _member;
+        public HouseHoldMemberTableTemplate Member
         {
             get
             {
@@ -52,13 +46,10 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void LoadItemId(string member)
+        public void LoadItemId(HouseHoldMemberTableTemplate SelectedHouseHoldMember)
         {
             try
             {
-
-
-                SelectedHouseHoldMember = JsonConvert.DeserializeObject<HouseHoldMember>(member);
 
                 if (String.IsNullOrEmpty(SelectedHouseHoldMember.PartitionKey) && String.IsNullOrEmpty(SelectedHouseHoldMember.RowKey))
                 {

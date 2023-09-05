@@ -1,5 +1,5 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
+
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 using System;
@@ -13,7 +13,7 @@ namespace HalcyonManager.ViewModels
     [QueryProperty(nameof(Project), nameof(Project))]
     public class ProjectViewModel : BaseViewModel
     {
-        private string _project;
+        private ProjectModel _project;
         private IHalcyonManagementClient _transactionServices;
 
         public ProjectViewModel(IHalcyonManagementClient transactionServices, object project = null)
@@ -50,7 +50,7 @@ namespace HalcyonManager.ViewModels
         }
 
 
-        public string Project
+        public ProjectModel Project
         {
             get
             {
@@ -63,11 +63,11 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void LoadItemId(string proj)
+        public void LoadItemId(ProjectModel project)
         {
             try
             {
-                SelectedProject = JsonConvert.DeserializeObject<ProjectModel>(proj);
+               SelectedProject = project;
 
                 if (String.IsNullOrEmpty(SelectedProject.PartitionKey) && String.IsNullOrEmpty(SelectedProject.RowKey))
                 {

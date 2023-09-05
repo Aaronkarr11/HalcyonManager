@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Halcyon.Clients;
-using HalcyonManagement.Entities;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 

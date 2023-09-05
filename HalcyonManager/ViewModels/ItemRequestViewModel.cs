@@ -1,5 +1,5 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
+
 using HalcyonManager.Views;
 using HalcyonSoft.SharedEntities;
 using System.Diagnostics;
@@ -39,10 +39,9 @@ namespace HalcyonManager.ViewModels
         {
             try
             {
-                RequestItemRequest request = new RequestItemRequest();
-                request.Key1 = item.PartitionKey;
-                request.Key2 = item.RowKey;
-                request.Operation = "D";
+                RequestItemsTableTemplate request = new RequestItemsTableTemplate();
+                request.PartitionKey = item.PartitionKey;
+                request.RowKey = item.RowKey;
                 request.DesiredDate = item.DesiredDate;
                 request.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
                 await _transactionServices.CreateRequestItem(request);
@@ -83,8 +82,8 @@ namespace HalcyonManager.ViewModels
         }
 
 
-        private List<RequestItemResponse> _requestItems;
-        public List<RequestItemResponse> RequestItems
+        private List<RequestItemsTableTemplate> _requestItems;
+        public List<RequestItemsTableTemplate> RequestItems
         {
             get => _requestItems;
             set => SetProperty(ref _requestItems, value);

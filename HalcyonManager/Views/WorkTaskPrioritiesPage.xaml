@@ -11,35 +11,34 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <ScrollView Padding="15">
-                <StackLayout BindableLayout.ItemsSource="{Binding WorkTaskList}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
 
+            <CollectionView x:Name="WorkItemListView" ItemsSource="{Binding WorkTaskList}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:WorkTaskModel">
                             <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="Azure">
-                                <StackLayout x:DataType="model:WorkTaskModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="25" />
-                                            <RowDefinition Height="25" />
-                                            <RowDefinition Height="25" />
-                                            <RowDefinition Height="50" />
-                                        </Grid.RowDefinitions>
-                                        <Label Grid.Column="0" Grid.Row="0">Title</Label>
-                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="16" FontAttributes="Bold" Text="{Binding Title}"></Label>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Column="0" Grid.Row="0">Title</Label>
+                                    <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="16" FontAttributes="Bold" Text="{Binding Title}"></Label>
 
-                                        <Label Grid.Column="0" Grid.Row="1">Priority</Label>
-                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="16" FontAttributes="Bold" Text="{Binding Priority}"></Label>
+                                    <Label Grid.Column="0" Grid.Row="1">Priority</Label>
+                                    <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="16" FontAttributes="Bold" Text="{Binding Priority}"></Label>
 
-                                        <Label Grid.Column="0" Grid.Row="2">Target Date</Label>
-                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="16" FontAttributes="Bold" Text="{Binding TargetDate}"></Label>
-                                        <Button
-                                   Style="{StaticResource EditWorkItemButton}" 
+                                    <Label Grid.Column="0" Grid.Row="2">Target Date</Label>
+                                    <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="16" FontAttributes="Bold" Text="{Binding TargetDate}"></Label>
+                                    <Button
+                                   BackgroundColor="{StaticResource ButtonNew}"
                                    Grid.Column="0"
                                    Grid.Row="3"
                                    Grid.ColumnSpan="3"
@@ -48,16 +47,14 @@
                                    FontAttributes="Bold"
                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkTaskPrioritiesViewModel}}, Path=EditWorkTaskCommand}"
                                    CommandParameter="{Binding .}">
-                                        </Button>
-                                    </Grid>
-                                </StackLayout>
+                                    </Button>
+                                </Grid>
+
                             </Frame>
-
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-
-                </StackLayout>
-            </ScrollView>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
 
     </ContentPage.Content>

@@ -7,29 +7,64 @@
     xmlns:views="clr-namespace:HalcyonManager.Views"
     xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"
     x:DataType="viewmodels:AppShellViewModel"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
-    <TabBar>
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.FlyoutBackground" Value="{StaticResource Tertiary}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" IsVisible="{Binding DeviceNavigationMobile}">
+        <Tab Title="Home" Icon="icon_about.png" IsVisible="True">
+                <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
+            </Tab>
+            <Tab Title="Work" Icon="icon_clipboard.png" IsVisible="{Binding DeviceNavigationMobile}">
+            <ShellContent Title="Work Item Overview" Route="WorkItemManagmentPage"
+                           ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
+            <ShellContent Title="Work Task Priorities" Route="WorkTaskPrioritiesPage"
+                           ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
+        </Tab>
+            <Tab Title="Items" Icon="icon_feed.png" IsVisible="True">
+                <ShellContent Route="ItemRequestPage" ContentTemplate="{DataTemplate views:ItemRequestPage}" />
+            </Tab>
+        <Tab Title="Settings" Icon="icon_gear.png" IsVisible="True">
+            <ShellContent Route="ConfigurationPage" ContentTemplate="{DataTemplate views:ConfigurationPage}" />
+        </Tab>
+    </FlyoutItem>
+
+
+    <TabBar IsVisible="{Binding DeviceNavigationDesktop}">
+
         <Tab Title="Home" IsVisible="True">
             <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
         </Tab>
-        <Tab Title="Work" Icon="icon_clipboard.png" IsVisible="{Binding DeviceNavigationMobile}">
-            <ShellContent Title="Work Item Overview"
-                           ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
-            <ShellContent Title="Work Task Priorities"
-                           ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
-        </Tab>
         <Tab Title="Work Item Overview" IsVisible="{Binding DeviceNavigationDesktop}">
-            <ShellContent ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
+            <ShellContent Route="WorkTaskPrioritiesPage" ContentTemplate="{DataTemplate views:WorkItemManagmentPage}" />
         </Tab>
         <Tab Title="Work Item Priorities" IsVisible="{Binding DeviceNavigationDesktop}">
-            <ShellContent ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
+            <ShellContent  Route="WorkItemManagmentPage" ContentTemplate="{DataTemplate views:WorkTaskPrioritiesPage}" />
         </Tab>
         <Tab Title="Items" IsVisible="True">
-            <ShellContent ContentTemplate="{DataTemplate views:ItemRequestPage}" />
+            <ShellContent Route="ItemRequestPage" ContentTemplate="{DataTemplate views:ItemRequestPage}" />
         </Tab>
         <Tab Title="Settings" IsVisible="True">
-            <ShellContent ContentTemplate="{DataTemplate views:ConfigurationPage}" />
+            <ShellContent Route="ConfigurationPage" ContentTemplate="{DataTemplate views:ConfigurationPage}" />
         </Tab>
     </TabBar>
 

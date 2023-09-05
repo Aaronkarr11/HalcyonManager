@@ -1,5 +1,5 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
+
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 namespace HalcyonManager.ViewModels
@@ -43,8 +43,8 @@ namespace HalcyonManager.ViewModels
             return !String.IsNullOrWhiteSpace(_selectedOperation.Title);
         }
 
-        private string _operation;
-        public string Operation
+        private OperationModel _operation;
+        public OperationModel Operation
         {
             get
             {
@@ -57,14 +57,11 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void LoadItemId(string operation)
+        public void LoadItemId(OperationModel operation)
         {
             try
             {
-
-
-                SelectedOperation = JsonConvert.DeserializeObject<OperationModel>(operation);
-
+                SelectedOperation = operation;
                 if (String.IsNullOrEmpty(SelectedOperation.PartitionKey) && String.IsNullOrEmpty(SelectedOperation.RowKey))
                 {
                     SelectedOperation.PartitionKey = System.Guid.NewGuid().ToString();

@@ -93,10 +93,10 @@
                                 <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                             <StackLayout Grid.Row="7" Margin="0,5,0,0" Grid.Column="0" Orientation="Vertical">
-                                <Button Style="{StaticResource CompleteButton}" Command="{Binding CompleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
+                                <Button Style="{StaticResource CompleteButton}" Command="{Binding CompleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                             <StackLayout Grid.Row="7" Margin="0,5,0,0" Grid.Column="1" Orientation="Vertical">
-                                <Button Style="{StaticResource DeleteButton}" Command="{Binding DeleteCommand}" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
+                                <Button Style="{StaticResource DeleteButton}" Command="{Binding DeleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>
                     </StackLayout>

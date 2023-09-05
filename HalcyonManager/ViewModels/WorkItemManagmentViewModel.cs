@@ -1,5 +1,5 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
+
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 using System;
@@ -164,7 +164,12 @@ namespace HalcyonManager.ViewModels
                     TargetDate = DateTime.Now,
                     Completed = 0
                 };
-                await Shell.Current.GoToAsync($"WorkTaskPage?WorkTask={JsonConvert.SerializeObject(workTaskModel)}");
+                var result = JsonConvert.SerializeObject(workTaskModel);
+                var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "WorkTask", workTaskModel }
+                    };
+                await Shell.Current.GoToAsync($"WorkTaskPage", navigationParameter);
             }
             catch (Exception ex)
             {
@@ -191,7 +196,11 @@ namespace HalcyonManager.ViewModels
 
             };
 
-            await Shell.Current.GoToAsync($"ProjectPage?Project={JsonConvert.SerializeObject(projectModel)}");
+            var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "Project", projectModel }
+                    };
+            await Shell.Current.GoToAsync($"ProjectPage", navigationParameter);
         }
 
         async void ExecuteNewOperationCommand()
@@ -205,7 +214,11 @@ namespace HalcyonManager.ViewModels
                 Completed = 0
             };
 
-            await Shell.Current.GoToAsync($"OperationPage?Operation={JsonConvert.SerializeObject(operationModel)}");
+            var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "Operation", operationModel }
+                    };
+            await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
         }
 
         async void ExecuteEditOperationCommand(object sender)
@@ -223,7 +236,11 @@ namespace HalcyonManager.ViewModels
                 Completed = 0
             };
 
-            await Shell.Current.GoToAsync($"OperationPage?Operation={JsonConvert.SerializeObject(operationModel)}");
+            var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "Operation", operationModel }
+                    };
+            await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
         }
 
         async void ExecuteEditProjectCommand(object sender)
@@ -242,13 +259,16 @@ namespace HalcyonManager.ViewModels
                 ParentPartitionKey = prog.ParentPartitionKey,
                 ParentRowKey = prog.ParentRowKey,
                 Priority = prog.Priority == 0 ? 1 : prog.Priority,
-                StartDate = prog.StartDate,
-                TargetDate = prog.TargetDate,
+                StartDate = Convert.ToDateTime(prog.StartDate),
+                TargetDate = Convert.ToDateTime(prog.TargetDate),
                 Description = prog.Description,
                 Completed = 0
             };
-            //string concatID = prog.PartitionKey + "%" + prog.RowKey;
-            await Shell.Current.GoToAsync($"ProjectPage?Project={JsonConvert.SerializeObject(projectModel)}");
+            var navigationParameter = new Dictionary<string, object>
+                    {
+                            { "Project", projectModel }
+                    };
+            await Shell.Current.GoToAsync($"ProjectPage", navigationParameter);
         }
 
         public async void OnAppearing()

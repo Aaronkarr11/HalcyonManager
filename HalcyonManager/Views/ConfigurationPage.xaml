@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HalcyonManager.Views.ConfigurationPage"
-             Title="Configuration Portal"
+             Title="Settings and Help"
              BackgroundImageSource="sky.jpg">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,9 +14,9 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ScrollView Grid.Row="1" Grid.Column="1" VerticalOptions="FillAndExpand">
+        <ScrollView Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical">
-                <Button Text="Household Managment" Clicked="Button_Clicked" TextColor="White">
+                <Button Text="Household Managment"  Margin="1,0,0,0" Clicked="Button_Clicked" TextColor="White">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="1,0">
                             <GradientStop Color="#40568d"
@@ -26,7 +26,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button Text="Help" Clicked="HelpButton_Clicked" TextColor="White">
+                <Button Text="Help" Clicked="HelpButton_Clicked"  Margin="1,10,0,0" TextColor="White">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="1,0">
                             <GradientStop Color="#40568d"
@@ -36,8 +36,6 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-
-
             </StackLayout>
         </ScrollView>
     </Grid>

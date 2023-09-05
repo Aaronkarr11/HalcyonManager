@@ -1,5 +1,5 @@
 ﻿using Halcyon.Clients;
-using HalcyonManagement.Entities;
+
 using HalcyonSoft.SharedEntities;
 using System;
 using System.Collections.Generic;
@@ -53,9 +53,8 @@ namespace HalcyonManager.ViewModels
 
         private async void OnSave()
         {
-            RequestItemRequest requestItemRequest = new RequestItemRequest();
+            RequestItemsTableTemplate requestItemRequest = new RequestItemsTableTemplate();
             requestItemRequest.DesiredDate = RequestedDate;
-            requestItemRequest.Operation = "C";
             requestItemRequest.Title = Name;
             requestItemRequest.IsFulfilled = 0;
             requestItemRequest.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
