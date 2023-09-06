@@ -1,4 +1,4 @@
-﻿using Halcyon.Clients;
+﻿using HalcyonSoft.Clients;
 
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
@@ -126,7 +126,7 @@ namespace HalcyonManager.ViewModels
                         OperationModel operation = rawOperationViewModel.SelectedOperation;
                         operation.Completed = 1;
                         operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteOperation?code=l7I4qs1BtTY4AMeBNX2o2TKn25tvyrGUcLG1ZqCksDALcpZfg8RH0Q==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteOperation?code=s3IFPSS8xIUCUwYRdMJ58ci4IDXjJxP6NHCsyIEPNe3XAzFu2yGOIg==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
                         await Shell.Current.GoToAsync("..");
                     }
@@ -151,7 +151,7 @@ namespace HalcyonManager.ViewModels
                         OperationModel operation = rawOperationViewModel.SelectedOperation;
                         operation.Completed = 0;
                         operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteOperation?code=l7I4qs1BtTY4AMeBNX2o2TKn25tvyrGUcLG1ZqCksDALcpZfg8RH0Q==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteOperation?code=s3IFPSS8xIUCUwYRdMJ58ci4IDXjJxP6NHCsyIEPNe3XAzFu2yGOIg==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
                         await Shell.Current.GoToAsync("..");
                     }
@@ -171,7 +171,7 @@ namespace HalcyonManager.ViewModels
             OperationModel operation = rawOperationViewModel.SelectedOperation;
             operation.Completed = 0;
             operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/CreateOperation?code=irK9ChkTDXiaTDYITRMk4SSDwKpYMnXZEQEPyFoY8yT4Rhpy8Q6aDQ==";
+            string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateOperation?code=-b6QCnpK1jsnt-HRywigofKmegup-hqe6eRsY_sOCv6aAzFuAvW5YQ==";
             await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
             await Shell.Current.GoToAsync("..");
         }

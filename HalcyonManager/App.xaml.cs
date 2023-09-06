@@ -4,7 +4,7 @@ using Microsoft.UI.Windowing;
 using Windows.Graphics;
 #endif
 
-using Halcyon.Clients;
+using HalcyonSoft.Clients;
 using HalcyonManager.Services;
 using HalcyonSoft.SharedEntities;
 using LiveChartsCore;

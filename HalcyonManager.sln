@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HalcyonManager", "HalcyonManager\HalcyonManager.csproj", "{548A14F3-73C3-4169-9189-21D17261EE36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Halcyon.Clients", "..\Halcyon.Clients\Halcyon.Clients\Halcyon.Clients.csproj", "{6BDC79F2-1D97-4595-85D1-364F35DBEDFC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,10 +17,6 @@ Global
 		{548A14F3-73C3-4169-9189-21D17261EE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{548A14F3-73C3-4169-9189-21D17261EE36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{548A14F3-73C3-4169-9189-21D17261EE36}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{6BDC79F2-1D97-4595-85D1-364F35DBEDFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BDC79F2-1D97-4595-85D1-364F35DBEDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BDC79F2-1D97-4595-85D1-364F35DBEDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BDC79F2-1D97-4595-85D1-364F35DBEDFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

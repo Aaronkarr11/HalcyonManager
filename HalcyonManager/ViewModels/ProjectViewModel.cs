@@ -1,4 +1,4 @@
-﻿using Halcyon.Clients;
+﻿using HalcyonSoft.Clients;
 
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
@@ -242,7 +242,7 @@ namespace HalcyonManager.ViewModels
                         ProjectModel project = rawProjectViewModel.SelectedProject;
                         project.Completed = 0;
                         project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteProject?code=3galLO88pU//2aO0oylD3LIL1ZGmasR1NrGj8FTLiC6DcHKfb2kxyw==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteProject?code=pXjfkwCmnacaaS7y0O2DAaNmX7XmXqlWvIvf1WVRP7hNAzFu7jzbUg==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
                         await Shell.Current.GoToAsync("..");
                     }
@@ -268,7 +268,7 @@ namespace HalcyonManager.ViewModels
                         ProjectModel project = rawProjectViewModel.SelectedProject;
                         project.Completed = 1;
                         project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteProject?code=3galLO88pU//2aO0oylD3LIL1ZGmasR1NrGj8FTLiC6DcHKfb2kxyw==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteProject?code=pXjfkwCmnacaaS7y0O2DAaNmX7XmXqlWvIvf1WVRP7hNAzFu7jzbUg==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
                         await Shell.Current.GoToAsync("..");
                     }
@@ -287,7 +287,7 @@ namespace HalcyonManager.ViewModels
             ProjectModel project = rawProjectViewModel.SelectedProject;
             project.Completed = 0;
             project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/CreateProject?code=bwcjCF4m183DuVfjCTF8k6fd6Q1fKaGK5gxmVsYjsfnC/9VtGF24Wg==";
+            string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateProject?code=pXxnpM-HTEqO09hiojLhDlNTBvKbcNEO4q0k3oI3MdH9AzFuXqaI3g==";
             await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
             await Shell.Current.GoToAsync("..");
         }

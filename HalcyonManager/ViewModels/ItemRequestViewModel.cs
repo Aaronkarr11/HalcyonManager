@@ -1,4 +1,4 @@
-﻿using Halcyon.Clients;
+﻿using HalcyonSoft.Clients;
 
 using HalcyonManager.Views;
 using HalcyonSoft.SharedEntities;

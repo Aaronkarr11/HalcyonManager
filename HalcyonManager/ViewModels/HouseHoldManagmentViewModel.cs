@@ -1,4 +1,4 @@
-﻿using Halcyon.Clients;
+﻿using HalcyonSoft.Clients;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 
@@ -140,7 +140,7 @@ namespace HalcyonManager.ViewModels
                     {
                         HouseHoldMember member = (HouseHoldMember)obj;
                         member.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteHouseHold?code=sxW9Y3fQvvs/9Q5aLPJSbq5euGFMcOboYlcymUY/v317KCRgZWTu9w==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteHouseHold?code=n7EHSk--bRA4C7USHoYZvGTNNNMonQjReMqODyD9ViYHAzFuVA5zpA==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(member));
                         HouseHoldList = await _transactionServices.GetHouseHoldMembers(DeviceInfo.Name.RemoveSpecialCharacters());
                     }

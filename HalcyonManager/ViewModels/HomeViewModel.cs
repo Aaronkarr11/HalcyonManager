@@ -1,4 +1,4 @@
-﻿using Halcyon.Clients;
+﻿using HalcyonSoft.Clients;
 using HalcyonSoft.SharedEntities;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;

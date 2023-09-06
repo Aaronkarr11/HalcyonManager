@@ -1,4 +1,4 @@
-﻿using Halcyon.Clients;
+﻿using HalcyonSoft.Clients;
 
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
@@ -259,8 +259,8 @@ namespace HalcyonManager.ViewModels
                 ParentPartitionKey = prog.ParentPartitionKey,
                 ParentRowKey = prog.ParentRowKey,
                 Priority = prog.Priority == 0 ? 1 : prog.Priority,
-                StartDate = Convert.ToDateTime(prog.StartDate),
-                TargetDate = Convert.ToDateTime(prog.TargetDate),
+                StartDate = prog.StartDate,
+                TargetDate = prog.TargetDate,
                 Description = prog.Description,
                 Completed = 0
             };

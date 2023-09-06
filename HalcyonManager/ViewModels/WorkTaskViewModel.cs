@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Halcyon.Clients;
+using HalcyonSoft.Clients;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 
@@ -63,7 +63,7 @@ namespace HalcyonManager.ViewModels
         public async void LoadItemId(WorkTaskModel rawWorkTask)
         {
             try
-            {  
+            {
                 HouseHoldMembers = await GetHouseHold();
                 SelectedWorkTask = rawWorkTask;
                 if (String.IsNullOrEmpty(SelectedWorkTask.Name))
@@ -248,7 +248,7 @@ namespace HalcyonManager.ViewModels
                         WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
                         workTask.Completed = 0;
                         workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteWorkTask?code=6IW3yugTiy72LYXfsFZ9NKrTpTaLwBKSKflKxZUbI/7KUxto1d9Egw==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(workTask));
                         await Shell.Current.GoToAsync("..");
                     }
@@ -273,7 +273,7 @@ namespace HalcyonManager.ViewModels
                         WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
                         workTask.Completed = 1;
                         workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/DeleteWorkTask?code=6IW3yugTiy72LYXfsFZ9NKrTpTaLwBKSKflKxZUbI/7KUxto1d9Egw==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(workTask));
                         await Shell.Current.GoToAsync("..");
                     }
@@ -292,20 +292,25 @@ namespace HalcyonManager.ViewModels
             WorkTaskViewModel rawWorkTaskViewModel = (WorkTaskViewModel)obj;
             WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
             workTask.Name = String.IsNullOrEmpty(workTask.Name) ? "N/A" : workTask.Name;
-
-            var selectedMember = HouseHoldMembersList.Where(h => h.Name.Trim() == workTask.Name.Trim()).FirstOrDefault();
-            if (selectedMember != null)
+            if (HouseHoldMembersList.Count != 0)
             {
-                workTask.PhoneNumber = selectedMember.PhoneNumber;
-                workTask.Name = selectedMember.Name;
-                workTask.Email = selectedMember.Email;
+                if (workTask.Name == "0")
+                {
+                    workTask.Name = "N/A";
+                }
+                else
+                {
+                    var blorb = HouseHoldMembersList[Convert.ToInt32(workTask.Name)];
+                    workTask.PhoneNumber = blorb.PhoneNumber;
+                    workTask.Name = blorb.Name;
+                    workTask.Email = blorb.Email;
+                }
             }
-
             workTask.Completed = 0;
             workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string urlDev = "http://localhost:7071/api/CreateOrUpdateWorkItem";
-            //string uri = "https://projecthalcyonmanagmenttransactions.azurewebsites.net/api/CreateWorkTask?code=3jM7Httk73UcdxbIVdiFM7231TbUnZdbWqyTl1tXFRwfEcpd/Dx//g==";
-            await _transactionServices.AzureFunctionPostTransaction(urlDev, JsonConvert.SerializeObject(workTask));
+            string url = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
+            var pagger = JsonConvert.SerializeObject(workTask);
+            var pog = _transactionServices.AzureFunctionPostTransaction(url, pagger);
             await Shell.Current.GoToAsync("..");
         }
     }
