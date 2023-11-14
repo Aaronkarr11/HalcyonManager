@@ -1,5 +1,5 @@
 ﻿using HalcyonSoft.Clients;
-
+using HalcyonSoft.Interfaces;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 namespace HalcyonManager.ViewModels
@@ -167,13 +167,22 @@ namespace HalcyonManager.ViewModels
         private async void OnSave(object obj)
         {
 
-            OperationViewModel rawOperationViewModel = (OperationViewModel)obj;
-            OperationModel operation = rawOperationViewModel.SelectedOperation;
-            operation.Completed = 0;
-            operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateOperation?code=-b6QCnpK1jsnt-HRywigofKmegup-hqe6eRsY_sOCv6aAzFuAvW5YQ==";
-            await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
-            await Shell.Current.GoToAsync("..");
+            try
+            {
+                OperationViewModel rawOperationViewModel = (OperationViewModel)obj;
+                OperationModel operation = rawOperationViewModel.SelectedOperation;
+                operation.Completed = 0;
+                operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
+                //operation.DeviceName = null;
+               // string uri = "http://localhost:7071/api/CreateOrUpdateOperation";
+                string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateOperation?code=-b6QCnpK1jsnt-HRywigofKmegup-hqe6eRsY_sOCv6aAzFuAvW5YQ==";
+                await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.GoToAsync("..");
+            }
         }
     }
 }

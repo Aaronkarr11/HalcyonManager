@@ -4,6 +4,7 @@ using HalcyonManager.Services;
 using CommunityToolkit.Maui;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Maui.FixesAndWorkarounds;
+using HalcyonSoft.Interfaces;
 
 namespace HalcyonManager;
 

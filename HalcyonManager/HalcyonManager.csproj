@@ -33,12 +33,18 @@
 	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+
+
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#512BD4" BaseSize="64,64" />
-
-		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#3399ff" BaseSize="64,64" />
+		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#e2eafc" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -70,13 +76,16 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="2.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-		<PackageReference Include="HalcyonSoft.Clients" Version="2023.9.5.6" />
-		<PackageReference Include="HalcyonSoft.SharedEntities" Version="2023.9.5.6" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.701" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="PureWeen.Maui.FixesAndWorkarounds" Version="1.4.6" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\HalcyonSoft\HalcyonSoft\HalcyonSoft.csproj" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 	  <Compile Update="Views\ConfigurationPage.xaml.cs">

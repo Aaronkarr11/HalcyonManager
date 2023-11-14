@@ -4,6 +4,7 @@ using HalcyonManager.Views;
 using HalcyonSoft.SharedEntities;
 using System.Diagnostics;
 using System.Windows.Input;
+using HalcyonSoft.Interfaces;
 
 namespace HalcyonManager.ViewModels
 {

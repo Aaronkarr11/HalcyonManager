@@ -1,5 +1,5 @@
 ﻿using HalcyonSoft.Clients;
-
+using HalcyonSoft.Interfaces;
 using HalcyonSoft.SharedEntities;
 using System;
 using System.Collections.Generic;

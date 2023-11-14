@@ -1,4 +1,5 @@
 ﻿using HalcyonSoft.Clients;
+using HalcyonSoft.Interfaces;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 

@@ -1,5 +1,5 @@
-﻿using HalcyonSoft.Clients;
-using HalcyonManager.ViewModels;
+﻿using HalcyonManager.ViewModels;
+using HalcyonSoft.Interfaces;
 
 namespace HalcyonManager.Views
 {

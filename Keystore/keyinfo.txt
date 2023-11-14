@@ -1,0 +1,8 @@
+Keystore Pass:
+HardcourtKey
+
+Alias:
+halcyonkey
+
+Alias Password:
+HardcourtKey

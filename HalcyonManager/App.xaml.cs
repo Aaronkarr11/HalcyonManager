@@ -3,7 +3,7 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Windows.Graphics;
 #endif
-
+using HalcyonSoft.Interfaces;
 using HalcyonSoft.Clients;
 using HalcyonManager.Services;
 using HalcyonSoft.SharedEntities;

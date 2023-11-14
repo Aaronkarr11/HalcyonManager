@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using HalcyonSoft.Clients;
+using HalcyonSoft.Interfaces;
 using HalcyonSoft.SharedEntities;
 using Newtonsoft.Json;
 
@@ -291,12 +292,12 @@ namespace HalcyonManager.ViewModels
         {
             WorkTaskViewModel rawWorkTaskViewModel = (WorkTaskViewModel)obj;
             WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
-            workTask.Name = String.IsNullOrEmpty(workTask.Name) ? "N/A" : workTask.Name;
+            workTask.Name = String.IsNullOrEmpty(workTask.Name) ? "NA" : workTask.Name;
             if (HouseHoldMembersList.Count != 0)
             {
                 if (workTask.Name == "0")
                 {
-                    workTask.Name = "N/A";
+                    workTask.Name = "NA";
                 }
                 else
                 {
