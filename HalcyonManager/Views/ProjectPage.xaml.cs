@@ -1,4 +1,4 @@
-﻿using HalcyonSoft.Interfaces;
+﻿using HalcyonCore.Interfaces;
 using HalcyonManager.ViewModels;
 
 namespace HalcyonManager.Views

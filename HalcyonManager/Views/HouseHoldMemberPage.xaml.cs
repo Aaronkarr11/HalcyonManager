@@ -1,5 +1,5 @@
 ﻿using HalcyonManager.ViewModels;
-using HalcyonSoft.Interfaces;
+using HalcyonCore.Interfaces;
 
 namespace HalcyonManager.Views
 {

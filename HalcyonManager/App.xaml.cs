@@ -3,10 +3,10 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Windows.Graphics;
 #endif
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.Clients;
 using HalcyonManager.Services;
-using HalcyonSoft.SharedEntities;
+using HalcyonCore.SharedEntities;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 

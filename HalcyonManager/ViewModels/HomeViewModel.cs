@@ -1,9 +1,10 @@
-﻿using HalcyonSoft.Clients;
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+﻿using HalcyonCore.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using Newtonsoft.Json;
 using SkiaSharp;
 
 namespace HalcyonManager.ViewModels
@@ -141,10 +142,9 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-                App._alertSvc.ShowConfirmation("Error", $"{ex.Message}", (result =>
-                {
-                    App._alertSvc.ShowAlert("Result", $"{result}");
-                }));
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "HomeViewModel", "OnAppearing");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 

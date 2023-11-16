@@ -1,6 +1,6 @@
-﻿using HalcyonSoft.Interfaces;
+﻿using HalcyonCore.Interfaces;
 using HalcyonManager.ViewModels;
-using HalcyonSoft.SharedEntities;
+using HalcyonCore.SharedEntities;
 
 namespace HalcyonManager.Views
 {

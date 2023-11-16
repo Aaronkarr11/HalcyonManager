@@ -1,6 +1,6 @@
-﻿using HalcyonSoft.Clients;
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+﻿using HalcyonCore.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
 namespace HalcyonManager.ViewModels
 {
@@ -57,7 +57,7 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void LoadItemId(OperationModel operation)
+        public async void LoadItemId(OperationModel operation)
         {
             try
             {
@@ -77,7 +77,9 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "OperationViewModel", "LoadItemId");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
@@ -132,7 +134,9 @@ namespace HalcyonManager.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        App._alertSvc.ShowConfirmation("Error", $"{ex.Message}", (result => { App._alertSvc.ShowAlert("Result", $"{result}"); }));
+                        ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "OperationViewModel", "OnComplete");
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
 
@@ -157,7 +161,9 @@ namespace HalcyonManager.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        App._alertSvc.ShowConfirmation("Error", $"{ex.Message}", (result => { App._alertSvc.ShowAlert("Result", $"{result}"); }));
+                        ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "OperationViewModel", "OnDelete");
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
 
@@ -173,15 +179,16 @@ namespace HalcyonManager.ViewModels
                 OperationModel operation = rawOperationViewModel.SelectedOperation;
                 operation.Completed = 0;
                 operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                //operation.DeviceName = null;
-               // string uri = "http://localhost:7071/api/CreateOrUpdateOperation";
                 string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateOperation?code=-b6QCnpK1jsnt-HRywigofKmegup-hqe6eRsY_sOCv6aAzFuAvW5YQ==";
                 await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
                 await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex)
             {
-                await Shell.Current.GoToAsync("..");
+
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "OperationViewModel", "OnSave");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
     }

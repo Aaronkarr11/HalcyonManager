@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using HalcyonSoft.Clients;
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+using HalcyonCore.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
 
 namespace HalcyonManager.ViewModels

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using HalcyonSoft.Clients;
+using HalcyonCore.Clients;
 using HalcyonManager.Services;
 using CommunityToolkit.Maui;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Maui.FixesAndWorkarounds;
-using HalcyonSoft.Interfaces;
+using HalcyonCore.Interfaces;
 
 namespace HalcyonManager;
 

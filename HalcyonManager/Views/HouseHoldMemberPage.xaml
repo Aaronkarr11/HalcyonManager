@@ -10,11 +10,9 @@
 
     <ContentPage.Content>
         <StackLayout>
-
             <StackLayout Spacing="4" Padding="15" BackgroundColor="#40568d">
                 <Label FontSize="Large" TextColor="White" Text="{Binding Name}"></Label>
             </StackLayout>
-
             <ScrollView Padding="15" VerticalOptions="FillAndExpand">
                 <Frame CornerRadius="10"  Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
 
@@ -48,10 +46,10 @@
                                 </Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0">
-                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
+                                <Button Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="1">
-                                <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
+                                <Button Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>
                     </StackLayout>

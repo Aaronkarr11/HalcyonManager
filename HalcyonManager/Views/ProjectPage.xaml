@@ -77,16 +77,16 @@
                                 </Picker>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="5" Grid.Column="0">
-                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
+                                <Button  Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="5" Grid.Column="1">
-                                <Button Style="{StaticResource CancelButton}" Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
+                                <Button  Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                             <StackLayout Grid.Row="6" Grid.Column="0" Margin="0,5,0,0" Orientation="Vertical">
-                                <Button Style="{StaticResource CompleteButton}" Command="{Binding CompleteCommand}" TextColor="White" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
+                                <Button  Command="{Binding CompleteCommand}" TextColor="White" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                             <StackLayout Grid.Row="6" Grid.Column="1" Margin="0,5,0,0" Orientation="Vertical">
-                                <Button Style="{StaticResource DeleteButton}" Command="{Binding DeleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
+                                <Button  Command="{Binding DeleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>
                     </StackLayout>

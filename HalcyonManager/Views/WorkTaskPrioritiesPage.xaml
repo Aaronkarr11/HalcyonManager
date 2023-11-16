@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HalcyonManager.Views.WorkTaskPrioritiesPage"
-             xmlns:model="clr-namespace:HalcyonSoft.SharedEntities;assembly=HalcyonSoft" 
+             xmlns:model="clr-namespace:HalcyonCore.SharedEntities;assembly=HalcyonCore" 
              Shell.PresentationMode="ModalAnimated"
              xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels" 
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -38,7 +38,7 @@
                                     <Label Grid.Column="0" Grid.Row="2">Target Date</Label>
                                     <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="16" FontAttributes="Bold" Text="{Binding TargetDate}"></Label>
                                     <Button
-                                   BackgroundColor="{StaticResource ButtonNew}"
+                                   BackgroundColor="#023e8a"
                                    Grid.Column="0"
                                    Grid.Row="3"
                                    Grid.ColumnSpan="3"

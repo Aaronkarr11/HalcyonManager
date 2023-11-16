@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:model="clr-namespace:HalcyonSoft.SharedEntities;assembly=HalcyonSoft" 
+             xmlns:model="clr-namespace:HalcyonCore.SharedEntities;assembly=HalcyonCore" 
              xmlns:controls="clr-namespace:HalcyonManager.Controls"
              xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels" 
              x:DataType="viewmodels:WorkItemManagmentViewModel"
@@ -253,7 +253,6 @@
                                                                 <Label Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Text="Target Date:" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Default" />
                                                                 <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0" Text="{Binding DisplayTargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
                                                                 <Button
-                                                                    Style="{StaticResource EditWorkItemButton}" 
                                                                     Grid.Row="5" 
                                                                     Grid.RowSpan="3" 
                                                                     Grid.Column="0"

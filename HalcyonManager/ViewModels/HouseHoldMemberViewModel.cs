@@ -1,6 +1,6 @@
-﻿using HalcyonSoft.Clients;
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+﻿using HalcyonCore.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
 
 namespace HalcyonManager.ViewModels
@@ -33,8 +33,8 @@ namespace HalcyonManager.ViewModels
             return !String.IsNullOrWhiteSpace(_selectedHouseHoldMember.Name);
         }
 
-        private HouseHoldMemberTableTemplate _member;
-        public HouseHoldMemberTableTemplate Member
+        private HouseHoldMember _member;
+        public HouseHoldMember Member
         {
             get
             {
@@ -47,7 +47,7 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void LoadItemId(HouseHoldMemberTableTemplate SelectedHouseHoldMember)
+        public async void LoadItemId(HouseHoldMember SelectedHouseHoldMember)
         {
             try
             {
@@ -67,10 +67,9 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-                App._alertSvc.ShowConfirmation("Error", $"{ex.Message}", (result =>
-                {
-                    App._alertSvc.ShowAlert("Result", $"{result}");
-                }));
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "HouseHoldMemberViewModel", "LoadItemId");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
@@ -107,12 +106,21 @@ namespace HalcyonManager.ViewModels
         private async void OnSave(object obj)
         {
 
-            HouseHoldMemberViewModel rawHouseHoldViewModel = (HouseHoldMemberViewModel)obj;
-            HouseHoldMember operation = rawHouseHoldViewModel.SelectedHouseHoldMember;
-            operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateHouseHold?code=aif1grIlMPqD97ETmutltxOPRYUx0YB0kKjWK_M73V0zAzFuqr8g5w==";
-            await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
-            await Shell.Current.GoToAsync("..");
+            try
+            {
+                HouseHoldMemberViewModel rawHouseHoldViewModel = (HouseHoldMemberViewModel)obj;
+                HouseHoldMember operation = rawHouseHoldViewModel.SelectedHouseHoldMember;
+                operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
+                string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateHouseHold?code=aif1grIlMPqD97ETmutltxOPRYUx0YB0kKjWK_M73V0zAzFuqr8g5w==";
+                await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "HouseHoldMemberViewModel", "OnSave");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
     }
 }

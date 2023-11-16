@@ -1,5 +1,6 @@
-﻿using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+﻿using Azure;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
 using System.Windows.Input;
 
@@ -96,14 +97,14 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-                throw;
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "GetWorkTaskHierarchy");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
         async void ExecuteEditWorkTaskCommand(object sender)
         {
-
-
             try
             {
                 var workTask = (WorkTaskModel)sender;
@@ -134,8 +135,9 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-
-                throw;
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditWorkTaskCommand");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
@@ -167,128 +169,172 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-
-                throw;
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteNewWorkTaskCommand");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
         async void ExecuteNewProjectCommand(object sender)
         {
-            var parentOperation = (OperationHierarchy)sender;
-
-            ProjectModel projectModel = new ProjectModel
+            try
             {
-                ParentPartitionKey = parentOperation.PartitionKey,
-                ParentRowKey = parentOperation.RowKey,
-                StartDate = DateTime.Now,
-                TargetDate = DateTime.Now,
-                Priority = 4,
-                Severity = "4 - Low",
-                State = "New",
-                LocationCategory = "Whole House",
-                Completed = 0
-
-            };
-
-            var navigationParameter = new Dictionary<string, object>
+                var parentOperation = (OperationHierarchy)sender;
+                ProjectModel projectModel = new ProjectModel
+                {
+                    ParentPartitionKey = parentOperation.PartitionKey,
+                    ParentRowKey = parentOperation.RowKey,
+                    StartDate = DateTime.Now,
+                    TargetDate = DateTime.Now,
+                    Priority = 4,
+                    Severity = "4 - Low",
+                    State = "New",
+                    LocationCategory = "Whole House",
+                    Completed = 0
+                };
+                var navigationParameter = new Dictionary<string, object>
                     {
                             { "Project", projectModel }
                     };
-            await Shell.Current.GoToAsync($"ProjectPage", navigationParameter);
+                await Shell.Current.GoToAsync($"ProjectPage", navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteNewProjectCommand");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
 
         async void ExecuteNewOperationCommand()
         {
 
-            OperationModel operationModel = new OperationModel
+            try
             {
-                StartDate = DateTime.Now,
-                TargetDate = DateTime.Now,
-                Icon = "icon.png",
-                Completed = 0
-            };
+                OperationModel operationModel = new OperationModel
+                {
+                    StartDate = DateTime.Now,
+                    TargetDate = DateTime.Now,
+                    Icon = "icon.png",
+                    Completed = 0
+                };
 
-            var navigationParameter = new Dictionary<string, object>
+                var navigationParameter = new Dictionary<string, object>
                     {
                             { "Operation", operationModel }
                     };
-            await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
+                await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteNewOperationCommand");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
 
         async void ExecuteEditOperationCommand(object sender)
         {
-            var operation = (OperationHierarchy)sender;
-            OperationModel operationModel = new OperationModel
+            try
             {
-                PartitionKey = operation.PartitionKey,
-                RowKey = operation.RowKey,
-                StartDate = operation.StartDate,
-                TargetDate = operation.TargetDate,
-                Title = operation.Title,
-                Description = operation.Description,
-                Icon = operation.Icon,
-                Completed = 0
-            };
+                var operation = (OperationHierarchy)sender;
+                OperationModel operationModel = new OperationModel
+                {
+                    PartitionKey = operation.PartitionKey,
+                    RowKey = operation.RowKey,
+                    StartDate = operation.StartDate,
+                    TargetDate = operation.TargetDate,
+                    Title = operation.Title,
+                    Description = operation.Description,
+                    Icon = operation.Icon,
+                    Completed = 0
+                };
 
-            var navigationParameter = new Dictionary<string, object>
+                var navigationParameter = new Dictionary<string, object>
                     {
                             { "Operation", operationModel }
                     };
-            await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
+                await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditOperationCommand");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
 
         async void ExecuteEditProjectCommand(object sender)
         {
 
-
-            var prog = (ProjectHierarchy)sender;
-            ProjectModel projectModel = new ProjectModel
+            try
             {
-                Title = prog.Title,
-                Severity = prog.Severity ?? "4 - Low",
-                RowKey = prog.RowKey,
-                State = prog.State,
-                PartitionKey = prog.PartitionKey,
-                LocationCategory = prog.LocationCategory ?? "Whole House",
-                ParentPartitionKey = prog.ParentPartitionKey,
-                ParentRowKey = prog.ParentRowKey,
-                Priority = prog.Priority == 0 ? 1 : prog.Priority,
-                StartDate = prog.StartDate,
-                TargetDate = prog.TargetDate,
-                Description = prog.Description,
-                Completed = 0
-            };
-            var navigationParameter = new Dictionary<string, object>
+
+                var prog = (ProjectHierarchy)sender;
+                ProjectModel projectModel = new ProjectModel
+                {
+                    Title = prog.Title,
+                    Severity = prog.Severity ?? "4 - Low",
+                    RowKey = prog.RowKey,
+                    State = prog.State,
+                    PartitionKey = prog.PartitionKey,
+                    LocationCategory = prog.LocationCategory ?? "Whole House",
+                    ParentPartitionKey = prog.ParentPartitionKey,
+                    ParentRowKey = prog.ParentRowKey,
+                    Priority = prog.Priority == 0 ? 1 : prog.Priority,
+                    StartDate = prog.StartDate,
+                    TargetDate = prog.TargetDate,
+                    Description = prog.Description,
+                    Completed = 0
+                };
+                var navigationParameter = new Dictionary<string, object>
                     {
                             { "Project", projectModel }
                     };
-            await Shell.Current.GoToAsync($"ProjectPage", navigationParameter);
+                await Shell.Current.GoToAsync($"ProjectPage", navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditProjectCommand");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
 
         public async void OnAppearing()
         {
-            IsBusy = true;
-            if (_selectedOperation != null)
+            try
             {
-                OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
-                GetWorkTaskHierarchy(_selectedOperation);
-            }
-            else
-            {
-                OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
-            }
+                IsBusy = true;
+                if (_selectedOperation != null)
+                {
+                    OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
+                    GetWorkTaskHierarchy(_selectedOperation);
+                }
+                else
+                {
+                    OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
+                }
 
-            if (String.IsNullOrEmpty(SelectedOperation))
-            {
-                SelectedOperation = "Work Item Management ";
+                if (String.IsNullOrEmpty(SelectedOperation))
+                {
+                    SelectedOperation = "Work Item Management ";
+                }
+                else
+                {
+                    SelectedOperation = "Work Item Management: " + _selectedOperation?.Title;
+                }
+                ShowPicker = true;
+                IsBusy = false;
             }
-            else
+            catch (Exception ex)
             {
-                SelectedOperation = "Work Item Management: " + _selectedOperation?.Title;
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "OnAppearing");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
-            ShowPicker = true;
-            IsBusy = false;
         }
+        
 
         private List<OperationModel> _operationList;
         public List<OperationModel> OperationList

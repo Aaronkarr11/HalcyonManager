@@ -1,6 +1,6 @@
-﻿using HalcyonSoft.Clients;
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+﻿using HalcyonCore.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -63,7 +63,7 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void LoadItemId(ProjectModel project)
+        public async void LoadItemId(ProjectModel project)
         {
             try
             {
@@ -91,7 +91,9 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "LoadItemId");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
@@ -248,7 +250,9 @@ namespace HalcyonManager.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        App._alertSvc.ShowConfirmation("Error", $"{ex.Message}", (result => { App._alertSvc.ShowAlert("Result", $"{result}"); }));
+                        ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "LoadItemId");
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
 
@@ -274,22 +278,32 @@ namespace HalcyonManager.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        App._alertSvc.ShowConfirmation("Error", $"{ex.Message}", (result => { App._alertSvc.ShowAlert("Result", $"{result}"); }));
+                        ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "OnComplete");
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
-
             }));
         }
 
         private async void OnSave(object obj)
         {
-            ProjectViewModel rawProjectViewModel = (ProjectViewModel)obj;
-            ProjectModel project = rawProjectViewModel.SelectedProject;
-            project.Completed = 0;
-            project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-            string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateProject?code=pXxnpM-HTEqO09hiojLhDlNTBvKbcNEO4q0k3oI3MdH9AzFuXqaI3g==";
-            await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
-            await Shell.Current.GoToAsync("..");
+            try
+            {
+                ProjectViewModel rawProjectViewModel = (ProjectViewModel)obj;
+                ProjectModel project = rawProjectViewModel.SelectedProject;
+                project.Completed = 0;
+                project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
+                string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateProject?code=pXxnpM-HTEqO09hiojLhDlNTBvKbcNEO4q0k3oI3MdH9AzFuXqaI3g==";
+                await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "OnComplete");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
     }
 }

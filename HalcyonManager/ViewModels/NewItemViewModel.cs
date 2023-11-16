@@ -1,6 +1,7 @@
-﻿using HalcyonSoft.Clients;
-using HalcyonSoft.Interfaces;
-using HalcyonSoft.SharedEntities;
+﻿using HalcyonCore.Clients;
+using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,16 +54,25 @@ namespace HalcyonManager.ViewModels
 
         private async void OnSave()
         {
-            RequestItemsTableTemplate requestItemRequest = new RequestItemsTableTemplate();
-            requestItemRequest.DesiredDate = RequestedDate;
-            requestItemRequest.Title = Name;
-            requestItemRequest.IsFulfilled = 0;
-            requestItemRequest.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
+            try
+            {
+                RequestItemsTableTemplate requestItemRequest = new RequestItemsTableTemplate();
+                requestItemRequest.DesiredDate = RequestedDate;
+                requestItemRequest.Title = Name;
+                requestItemRequest.IsFulfilled = 0;
+                requestItemRequest.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
 
-            await _transactionServices.CreateRequestItem(requestItemRequest);
+                await _transactionServices.CreateRequestItem(requestItemRequest);
 
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+                // This will pop the current page off the navigation stack
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "NewItemViewModel", "OnSave");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+            }
         }
     }
 }

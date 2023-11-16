@@ -1,10 +1,11 @@
-﻿using HalcyonSoft.Clients;
+﻿using HalcyonCore.Clients;
 
 using HalcyonManager.Views;
-using HalcyonSoft.SharedEntities;
+using HalcyonCore.SharedEntities;
 using System.Diagnostics;
 using System.Windows.Input;
-using HalcyonSoft.Interfaces;
+using HalcyonCore.Interfaces;
+using Newtonsoft.Json;
 
 namespace HalcyonManager.ViewModels
 {
@@ -50,7 +51,9 @@ namespace HalcyonManager.ViewModels
             }
             catch (Exception ex)
             {
-                throw;
+                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ItemRequestViewModel", "OnItemChecked");
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
 
