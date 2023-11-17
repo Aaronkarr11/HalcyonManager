@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Spacing="4" Padding="15" BackgroundColor="#40568d">
-                <Label FontSize="Large" TextColor="White" Text="{Binding Name}"></Label>
+                <Label FontSize="Large" TextColor="White" Text="{Binding PageName}"></Label>
             </StackLayout>
             <ScrollView Padding="15" VerticalOptions="FillAndExpand">
                 <Frame CornerRadius="10"  Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
@@ -39,11 +39,7 @@
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" Text="Phone" FontSize="Medium" />
-                                <Entry Keyboard="Numeric" Text="{Binding SelectedHouseHoldMember.PhoneNumber, Mode=TwoWay}">
-                                    <Entry.Behaviors>
-                                        <behavior:MaskedBehavior Mask="(XXX) XXX-XXXX" />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                <Entry Keyboard="Numeric" Text="{Binding SelectedHouseHoldMember.PhoneNumber, Mode=TwoWay}"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0">
                                 <Button Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>

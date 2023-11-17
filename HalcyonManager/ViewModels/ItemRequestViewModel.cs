@@ -7,8 +7,10 @@ using System.Windows.Input;
 using HalcyonCore.Interfaces;
 using Newtonsoft.Json;
 
+
 namespace HalcyonManager.ViewModels
 {
+    //[QueryProperty(nameof(RequestItem), nameof(RequestItem))]
     public class ItemRequestViewModel : BaseViewModel
     {
         private IHalcyonManagementClient _transactionServices;
@@ -19,7 +21,7 @@ namespace HalcyonManager.ViewModels
 
         public Command<RequestItemResponse> ItemTapped { get; }
 
-        public ICommand DeletePersonCommand { get; private set; }
+        public ICommand CompleteCommand { get; private set; }
 
         public ItemRequestViewModel(IHalcyonManagementClient transactionServices)
         {
@@ -31,20 +33,24 @@ namespace HalcyonManager.ViewModels
 
             //ItemTapped = new Command<RequestItemResponse>(OnItemChecked);
 
-            DeletePersonCommand = new Command((name) =>
+            CompleteCommand = new Command((obj) =>
             {
-                OnItemChecked((RequestItemResponse)name);
+                OnItemChecked(obj);
             });
+
         }
 
-        async void OnItemChecked(RequestItemResponse item)
+        async void OnItemChecked(object obj)
         {
             try
             {
+                RequestItemsTableTemplate item = (RequestItemsTableTemplate)obj;
+
                 RequestItemsTableTemplate request = new RequestItemsTableTemplate();
                 request.PartitionKey = item.PartitionKey;
                 request.RowKey = item.RowKey;
                 request.DesiredDate = item.DesiredDate;
+                request.IsFulfilled = 1;
                 request.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
                 await _transactionServices.CreateRequestItem(request);
                 await ExecuteLoadItemsCommand();
@@ -75,8 +81,9 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public void OnAppearing()
+        public async void OnAppearing()
         {
+            RequestItems = await _transactionServices.GetRequestItems(DeviceInfo.Name.RemoveSpecialCharacters());
             IsBusy = true;
         }
 

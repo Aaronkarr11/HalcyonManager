@@ -40,7 +40,7 @@
                     <Label Grid.Column="0"
                            Text="{Binding CardTitle}"
                            FontAttributes="Bold"
-                           FontSize="Large"
+                           FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <BoxView Grid.Row="1"
@@ -98,7 +98,7 @@
                            CardTitle="{Binding Title}"
                            CardDescription="{Binding DesiredDate}"
                            CardColor="Azure"
-                           FullfillCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ItemRequestViewModel}}, Path=DeletePersonCommand}"
+                           FullfillCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ItemRequestViewModel}}, Path=CompleteCommand}"
                            CommandParameter="{Binding .}"
                            ControlTemplate="{StaticResource CardViewControlTemplate}" />
                         </StackLayout>

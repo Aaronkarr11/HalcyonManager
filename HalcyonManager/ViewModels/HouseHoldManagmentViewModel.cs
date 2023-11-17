@@ -63,7 +63,6 @@ namespace HalcyonManager.ViewModels
 
             try
             {
-
                 HouseHoldList = await _transactionServices.GetHouseHoldMembers(DeviceInfo.Name.RemoveSpecialCharacters());
                 if (HouseHoldList.Count() == 0)
                 {
@@ -118,7 +117,7 @@ namespace HalcyonManager.ViewModels
                 };
                 var navigationParameter = new Dictionary<string, object>
                     {
-                            { "WorkTask", sentHouseHold }
+                            { "Member", sentHouseHold }
                     };
                 await Shell.Current.GoToAsync($"HouseHoldMemberPage", navigationParameter);
             }

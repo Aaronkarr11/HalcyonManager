@@ -37,15 +37,15 @@
 
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" HorizontalTextAlignment="Start" Text="Name" FontSize="{Binding DeviceFontSize}" />
-                                <Entry BackgroundColor="White" ClearButtonVisibility="WhileEditing" MaxLength="50" Grid.ColumnSpan="2" Text="{Binding SelectedWorkTask.Title, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
+                                <Entry ClearButtonVisibility="WhileEditing" MaxLength="50" Grid.ColumnSpan="2" Text="{Binding SelectedWorkTask.Title, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" Text="Description" FontSize="{Binding DeviceFontSize}" />
-                                <Editor AutoSize="TextChanges" BackgroundColor="White"  MaxLength="75" Text="{Binding SelectedWorkTask.Description, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
+                                <Editor AutoSize="TextChanges"   MaxLength="75" Text="{Binding SelectedWorkTask.Description, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="2" Grid.RowSpan="2"  Grid.Column="0">
                                 <Label FontAttributes="Bold" Text="Assignment"  FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="AssignmentPicker" HorizontalOptions="Start" WidthRequest="150" BackgroundColor="White"  SelectedIndex="{Binding SelectedWorkTask.Name, Mode=TwoWay}" ItemsSource="{Binding HouseHoldMembers, Mode=TwoWay}" >
+                                <Picker x:Name="AssignmentPicker" HorizontalOptions="Start" WidthRequest="150"   SelectedIndex="{Binding SelectedWorkTask.Name, Mode=TwoWay}" ItemsSource="{Binding HouseHoldMembers, Mode=TwoWay}" >
                                 </Picker>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
@@ -54,15 +54,15 @@
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="3" Grid.Column="0">
                                 <Label FontAttributes="Bold" Text="Start Date" FontSize="{Binding DeviceFontSize}" />
-                                <DatePicker BackgroundColor="White" Date="{Binding SelectedWorkTask.StartDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
+                                <DatePicker  Date="{Binding SelectedWorkTask.StartDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="3" Grid.Column="1">
                                 <Label FontAttributes="Bold"  Text="Target Date" FontSize="{Binding DeviceFontSize}" />
-                                <DatePicker BackgroundColor="White"  Date="{Binding SelectedWorkTask.TargetDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
+                                <DatePicker   Date="{Binding SelectedWorkTask.TargetDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="4"  Grid.RowSpan="2" Grid.Column="0" >
                                 <Label FontAttributes="Bold" Text="State" FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="StatePicker" BackgroundColor="White" TextColor="{Binding StateColor, Mode=TwoWay}" SelectedItem="{Binding SelectedWorkTask.State, Mode=TwoWay}" ItemsSource="{Binding StateList, Mode=TwoWay}" >
+                                <Picker x:Name="StatePicker"  TextColor="{Binding StateColor, Mode=TwoWay}" SelectedItem="{Binding SelectedWorkTask.State, Mode=TwoWay}" ItemsSource="{Binding StateList, Mode=TwoWay}" >
                                     <Picker.Behaviors>
                                         <toolkit:EventToCommandBehavior
                             EventName="SelectedIndexChanged"
@@ -73,29 +73,29 @@
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="4" Grid.Column="1" >
                                 <Label FontAttributes="Bold" Text="Effort" FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="EffortPicker" BackgroundColor="White" SelectedItem="{Binding SelectedWorkTask.Effort, Mode=TwoWay}" ItemsSource="{Binding EffortList, Mode=TwoWay}" >
+                                <Picker x:Name="EffortPicker"  SelectedItem="{Binding SelectedWorkTask.Effort, Mode=TwoWay}" ItemsSource="{Binding EffortList, Mode=TwoWay}" >
                                 </Picker>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="5" Grid.Column="0">
                                 <Label FontAttributes="Bold" Text="Risk" FontSize="{Binding DeviceFontSize}" />
-                                <Picker   x:Name="PickerRisk" BackgroundColor="White" SelectedItem="{Binding SelectedWorkTask.Risk, Mode=TwoWay}" ItemsSource="{Binding RiskList, Mode=TwoWay}">
+                                <Picker   x:Name="PickerRisk"  SelectedItem="{Binding SelectedWorkTask.Risk, Mode=TwoWay}" ItemsSource="{Binding RiskList, Mode=TwoWay}">
                                 </Picker>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="5" Grid.Column="1">
+                            <StackLayout Orientation="Vertical" Margin="0,5,0,25" Grid.Row="5" Grid.Column="1">
                                 <Label FontAttributes="Bold" Text="Priority" FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="PickerPriority" BackgroundColor="White" SelectedItem="{Binding SelectedWorkTask.Priority, Mode=TwoWay}" ItemsSource="{Binding PriorityList, Mode=TwoWay}">
+                                <Picker x:Name="PickerPriority"  SelectedItem="{Binding SelectedWorkTask.Priority, Mode=TwoWay}" ItemsSource="{Binding PriorityList, Mode=TwoWay}">
                                 </Picker>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="6" Grid.Column="0">
+                            <StackLayout Orientation="Vertical" Margin="15,0,0,0" Grid.Row="6" Grid.Column="0">
                                 <Button  Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="6" Grid.Column="1">
+                            <StackLayout Orientation="Vertical" Margin="15,0,10,15" Grid.Row="6" Grid.Column="1">
                                 <Button  Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Grid.Row="7" Margin="0,5,0,0" Grid.Column="0" Orientation="Vertical">
+                            <StackLayout Grid.Row="7" Margin="15,0,0,0" Grid.Column="0" Orientation="Vertical">
                                 <Button  Command="{Binding CompleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Grid.Row="7" Margin="0,5,0,0" Grid.Column="1" Orientation="Vertical">
+                            <StackLayout Grid.Row="7" Margin="15,0,10,0" Grid.Column="1" Orientation="Vertical">
                                 <Button  Command="{Binding DeleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>

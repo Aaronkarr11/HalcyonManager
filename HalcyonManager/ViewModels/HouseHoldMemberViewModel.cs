@@ -19,18 +19,12 @@ namespace HalcyonManager.ViewModels
             SaveCommand = new Command((obj) =>
             {
                 OnSave(obj);
-                ValidateSave();
             });
 
 
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
 
-        }
-
-        private bool ValidateSave()
-        {
-            return !String.IsNullOrWhiteSpace(_selectedHouseHoldMember.Name);
         }
 
         private HouseHoldMember _member;
@@ -47,21 +41,21 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        public async void LoadItemId(HouseHoldMember SelectedHouseHoldMember)
+        public async void LoadItemId(HouseHoldMember mem)
         {
             try
             {
-
-                if (String.IsNullOrEmpty(SelectedHouseHoldMember.PartitionKey) && String.IsNullOrEmpty(SelectedHouseHoldMember.RowKey))
+                SelectedHouseHoldMember = mem;
+                if (String.IsNullOrEmpty(mem.PartitionKey) && String.IsNullOrEmpty(mem.RowKey))
                 {
-                    SelectedHouseHoldMember.PartitionKey = System.Guid.NewGuid().ToString();
-                    SelectedHouseHoldMember.RowKey = System.Guid.NewGuid().ToString();
-                    Name = $"Create a New HouseHold Member";
+                    mem.PartitionKey = System.Guid.NewGuid().ToString();
+                    mem.RowKey = System.Guid.NewGuid().ToString();
+                    PageName = $"Create a New HouseHold Member";
                     ShowDeleteButton = false;
                 }
                 else
                 {
-                    Name = $"Edit HouseHold Member: {SelectedHouseHoldMember.Name}";
+                    PageName = $"Edit HouseHold Member: {SelectedHouseHoldMember.Name}";
                     ShowDeleteButton = true;
                 }
             }
@@ -80,11 +74,11 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _selectedHouseHoldMember, value);
         }
 
-        private string _name;
-        public string Name
+        private string _pagename;
+        public string PageName
         {
-            get => _name;
-            set => SetProperty(ref _name, value);
+            get => _pagename;
+            set => SetProperty(ref _pagename, value);
         }
 
         private bool _showDeleteButton;
@@ -109,11 +103,20 @@ namespace HalcyonManager.ViewModels
             try
             {
                 HouseHoldMemberViewModel rawHouseHoldViewModel = (HouseHoldMemberViewModel)obj;
-                HouseHoldMember operation = rawHouseHoldViewModel.SelectedHouseHoldMember;
-                operation.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateHouseHold?code=aif1grIlMPqD97ETmutltxOPRYUx0YB0kKjWK_M73V0zAzFuqr8g5w==";
-                await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(operation));
-                await Shell.Current.GoToAsync("..");
+                HouseHoldMember houseHold = rawHouseHoldViewModel.SelectedHouseHoldMember;
+                if (Helpers.IsPhoneValid(houseHold))
+                {       
+                    houseHold.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
+                    string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateHouseHold?code=aif1grIlMPqD97ETmutltxOPRYUx0YB0kKjWK_M73V0zAzFuqr8g5w==";
+                    await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(houseHold));
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                {
+                    App._alertSvc.ShowAlert("Warning!", "Phone must be valid and contain 10 digits");
+                }
+
+
             }
             catch (Exception ex)
             {

@@ -36,23 +36,23 @@
 
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" HorizontalTextAlignment="Start" Text="Name" FontSize="{Binding DeviceFontSize}" />
-                                <Entry ClearButtonVisibility="WhileEditing" BackgroundColor="White" MaxLength="50" Grid.ColumnSpan="2" Text="{Binding SelectedProject.Title, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
+                                <Entry ClearButtonVisibility="WhileEditing"  MaxLength="50" Grid.ColumnSpan="2" Text="{Binding SelectedProject.Title, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label FontAttributes="Bold" Text="Description" FontSize="{Binding DeviceFontSize}" />
-                                <Editor AutoSize="TextChanges" BackgroundColor="White"  MaxLength="75" Text="{Binding SelectedProject.Description, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
+                                <Editor AutoSize="TextChanges"   MaxLength="75" Text="{Binding SelectedProject.Description, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="2" Grid.Column="0">
                                 <Label FontAttributes="Bold" Text="Start Date" FontSize="{Binding DeviceFontSize}" />
-                                <DatePicker BackgroundColor="White" Date="{Binding SelectedProject.StartDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
+                                <DatePicker  Date="{Binding SelectedProject.StartDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="2" Grid.Column="1">
                                 <Label FontAttributes="Bold"  Text="Target Date" FontSize="{Binding DeviceFontSize}" />
-                                <DatePicker BackgroundColor="White" Date="{Binding SelectedProject.TargetDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
+                                <DatePicker  Date="{Binding SelectedProject.TargetDate, Mode=TwoWay}" FontSize="{Binding DeviceFontSize}" Margin="0"  />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="3" Grid.Column="0" >
                                 <Label FontAttributes="Bold" Text="State" FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="StatePicker" BackgroundColor="White" TextColor="{Binding StateColor, Mode=TwoWay}" SelectedItem="{Binding SelectedProject.State, Mode=TwoWay}" ItemsSource="{Binding StateList, Mode=TwoWay}" >
+                                <Picker x:Name="StatePicker"  TextColor="{Binding StateColor, Mode=TwoWay}" SelectedItem="{Binding SelectedProject.State, Mode=TwoWay}" ItemsSource="{Binding StateList, Mode=TwoWay}" >
                                     <Picker.Behaviors>
                                         <toolkit:EventToCommandBehavior
                             EventName="SelectedIndexChanged"
@@ -63,29 +63,29 @@
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="3" Grid.Column="1" >
                                 <Label FontAttributes="Bold" Text="Location" FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="LocationCategorySeverity" BackgroundColor="White" SelectedItem="{Binding SelectedProject.LocationCategory}" ItemsSource="{Binding LocationCategoryList, Mode=TwoWay}" >
+                                <Picker x:Name="LocationCategorySeverity"  SelectedItem="{Binding SelectedProject.LocationCategory}" ItemsSource="{Binding LocationCategoryList, Mode=TwoWay}" >
                                 </Picker>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,0" Grid.Row="4" Grid.Column="0">
                                 <Label FontAttributes="Bold" Text="Severity" FontSize="{Binding DeviceFontSize}" />
-                                <Picker   x:Name="PickerSeverity" BackgroundColor="White" SelectedItem="{Binding SelectedProject.Severity, Mode=TwoWay}" ItemsSource="{Binding SeverityList, Mode=TwoWay}">
+                                <Picker   x:Name="PickerSeverity"  SelectedItem="{Binding SelectedProject.Severity, Mode=TwoWay}" ItemsSource="{Binding SeverityList, Mode=TwoWay}">
                                 </Picker>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical"  Margin="0,5,0,0" Grid.Row="4" Grid.Column="1">
+                            <StackLayout Orientation="Vertical"  Margin="0,0,0,25" Grid.Row="4" Grid.Column="1">
                                 <Label FontAttributes="Bold" Text="Priority" FontSize="{Binding DeviceFontSize}" />
-                                <Picker x:Name="PickerPriority" BackgroundColor="White" SelectedItem="{Binding SelectedProject.Priority, Mode=TwoWay}" ItemsSource="{Binding PriorityList, Mode=TwoWay}">
+                                <Picker x:Name="PickerPriority"  SelectedItem="{Binding SelectedProject.Priority, Mode=TwoWay}" ItemsSource="{Binding PriorityList, Mode=TwoWay}">
                                 </Picker>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="5" Grid.Column="0">
+                            <StackLayout Orientation="Vertical" Margin="15,0,0,0" Grid.Row="5" Grid.Column="0">
                                 <Button  Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Margin="0,5,0,0" Grid.Row="5" Grid.Column="1">
+                            <StackLayout Orientation="Vertical" Margin="15,0,10,15" Grid.Row="5" Grid.Column="1">
                                 <Button  Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Grid.Row="6" Grid.Column="0" Margin="0,5,0,0" Orientation="Vertical">
+                            <StackLayout Grid.Row="6" Grid.Column="0" Margin="15,0,0,0" Orientation="Vertical">
                                 <Button  Command="{Binding CompleteCommand}" TextColor="White" IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Complete" BackgroundColor="#006600"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Grid.Row="6" Grid.Column="1" Margin="0,5,0,0" Orientation="Vertical">
+                            <StackLayout Grid.Row="6" Grid.Column="1" Margin="15,0,10,0" Orientation="Vertical">
                                 <Button  Command="{Binding DeleteCommand}" TextColor="White"  IsEnabled="{Binding ShowDeleteButton, Mode=TwoWay}" CommandParameter="{Binding .}" Text="Delete" BackgroundColor="DarkRed"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>

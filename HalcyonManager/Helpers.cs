@@ -1,4 +1,6 @@
 ﻿using HalcyonCore.SharedEntities;
+using HalcyonManager.ViewModels;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HalcyonManager
 {
@@ -65,6 +67,24 @@ namespace HalcyonManager
             error.RowKey = System.Guid.NewGuid().ToString();
             return error;
         }
+
+        public static bool IsPhoneValid(HouseHoldMember houseHoldMemberViewModel)
+        {
+            if (!houseHoldMemberViewModel.PhoneNumber.IsNullOrEmpty())
+            {
+                var test = HalcyonCore.Utilities.Extensions.RemoveSpecialCharacters(houseHoldMemberViewModel.PhoneNumber);
+                if (test.Length == 10)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
     }
 }
