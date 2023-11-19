@@ -30,15 +30,20 @@ namespace HalcyonManager.ViewModels
                 PieGraphTitle = $"Work Tasks Overview for {DateTime.Now.Year}";
                 BarGraphTitle = $"Comparison of Last Month & Current Month";
                 DashBoardData = await _transactionServices.GetDashBoardData(DeviceInfo.Name.RemoveSpecialCharacters());
+                if (DashBoardData == null)
+                {
+                    App._alertSvc.ShowAlert("No Data!", $"There is no work to present. Go to the Work tab to create some.");
+                }
+                else
+                {
+                    DashBoardData.percentageData.percentCompleted = DashBoardData?.percentageData?.percentCompleted.ToString() == "NaN" ? 0 : DashBoardData.percentageData.percentCompleted;
+                    DashBoardData.percentageData.percentUnCompleted = DashBoardData?.percentageData?.percentUnCompleted.ToString() == "NaN" ? 100 : DashBoardData.percentageData.percentUnCompleted;
 
-                DashBoardData.percentageData.percentCompleted = DashBoardData.percentageData.percentCompleted.ToString() == "NaN" ? 0 : DashBoardData.percentageData.percentCompleted;
-                DashBoardData.percentageData.percentUnCompleted = DashBoardData.percentageData.percentUnCompleted.ToString() == "NaN" ? 100 : DashBoardData.percentageData.percentUnCompleted;
+                    //   var data = new double[] { Percentages.PercentUnCompleted, Percentages.PercentCompleted };
 
-                //   var data = new double[] { Percentages.PercentUnCompleted, Percentages.PercentCompleted };
-
-                var graphData = new double[] { DashBoardData.percentageData.percentUnCompleted, DashBoardData.percentageData.percentCompleted };
-                BarSeries = new ISeries[]
-                   {
+                    var graphData = new double[] { DashBoardData.percentageData.percentUnCompleted, DashBoardData.percentageData.percentCompleted };
+                    BarSeries = new ISeries[]
+                       {
            new ColumnSeries<int>
         {
             Name = DashBoardData.barGraphData.LastMonth,
@@ -54,9 +59,9 @@ namespace HalcyonManager.ViewModels
             Fill = new SolidColorPaint(SKColors.LightBlue)
 
         }
-                   };
+                       };
 
-                BarXAxes = new List<Axis>
+                    BarXAxes = new List<Axis>
             {
                 new Axis
                 {
@@ -66,7 +71,7 @@ namespace HalcyonManager.ViewModels
 
             };
 
-                BarYAxes = new List<Axis>
+                    BarYAxes = new List<Axis>
             {
                 new Axis
                 {
@@ -75,41 +80,41 @@ namespace HalcyonManager.ViewModels
 
             };
 
-                var data = new double[] { DashBoardData.percentageData.percentUnCompleted, DashBoardData.percentageData.percentCompleted };
+                    var data = new double[] { DashBoardData.percentageData.percentUnCompleted, DashBoardData.percentageData.percentCompleted };
 
-                int counter = 1;
-                Series = data.AsLiveChartsPieSeries((value, series) =>
-                {
-                    if (counter == 1)
+                    int counter = 1;
+                    Series = data.AsLiveChartsPieSeries((value, series) =>
                     {
-                        series.Name = $"Uncompleted Work Tasks: {value}%";
-                        series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
-                        series.Fill = new SolidColorPaint(SKColors.Yellow);
-                        series.DataLabelsSize = 0;
-                        series.TooltipLabelFormatter = p => $"{p.PrimaryValue} / {p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
-                    }
-                    else if (counter == 2)
+                        if (counter == 1)
+                        {
+                            series.Name = $"Uncompleted Work Tasks: {value}%";
+                            series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
+                            series.Fill = new SolidColorPaint(SKColors.Yellow);
+                            series.DataLabelsSize = 0;
+                            series.TooltipLabelFormatter = p => $"{p.PrimaryValue} / {p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
+                        }
+                        else if (counter == 2)
+                        {
+                            series.Name = $"Completed Work Tasks: {value}%";
+                            series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
+                            series.Fill = new SolidColorPaint(SKColors.Green);
+                            series.DataLabelsSize = 0;
+                            series.TooltipLabelFormatter = p => $"{p.PrimaryValue} / {p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
+                        }
+                        counter++;
+                    });
+
+                    List<string> labels = new List<string>();
+
+                    foreach (var item in DashBoardData.lineGraphModel)
                     {
-                        series.Name = $"Completed Work Tasks: {value}%";
-                        series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
-                        series.Fill = new SolidColorPaint(SKColors.Green);
-                        series.DataLabelsSize = 0;
-                        series.TooltipLabelFormatter = p => $"{p.PrimaryValue} / {p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
-                    }
-                    counter++;
-                });
+                        labels.Add(item.Name);
+                    };
 
-                List<string> labels = new List<string>();
+                    List<LineGraphModelItem> lineGraphModels = new List<LineGraphModelItem>();
 
-                foreach (var item in DashBoardData.lineGraphModel)
-                {
-                    labels.Add(item.Name);
-                };
-
-                List<LineGraphModelItem> lineGraphModels = new List<LineGraphModelItem>();
-
-                SeriesCollection = new ISeries[]
-    {
+                    SeriesCollection = new ISeries[]
+        {
                new LineSeries<LineGraphModelItem>
             {
                 Values = new List<LineGraphModelItem>(lineGraphModels = DashBoardData.lineGraphModel),
@@ -120,9 +125,9 @@ namespace HalcyonManager.ViewModels
                 TooltipLabelFormatter =
         (chartPoint) => $"{chartPoint.Model.Name}: {chartPoint.Model.TotalCompleted}"
             }
-                 };
+                     };
 
-                XAxes = new List<Axis>
+                    XAxes = new List<Axis>
                  {
                      new Axis
                      {
@@ -131,13 +136,16 @@ namespace HalcyonManager.ViewModels
                      }
                  };
 
-                YAxes = new List<Axis>
+                    YAxes = new List<Axis>
                  {
                      new Axis
                      {
                          TextSize = 35
                      }
                  };
+                }
+
+
 
             }
             catch (Exception ex)

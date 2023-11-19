@@ -56,6 +56,22 @@ namespace HalcyonManager.Controls
         }
 
 
+        public static readonly BindableProperty WorkTaskStateProperty = BindableProperty.Create(nameof(WorkTaskState), typeof(string), typeof(WorkTaskCard), string.Empty);
+        public string WorkTaskState
+        {
+            get => (string)GetValue(WorkTaskStateProperty);
+            set => SetValue(WorkTaskStateProperty, value);
+        }
+
+        public static readonly BindableProperty WorkTaskColorProperty = BindableProperty.Create(nameof(WorkTaskColor), typeof(Color), typeof(WorkTaskCard), Color.FromRgb(217, 217, 217));
+        public Microsoft.Maui.Graphics.Color WorkTaskColor
+        {
+            get => (Color)GetValue(WorkTaskColorProperty);
+            set => SetValue(WorkTaskColorProperty, value);
+        }
+
+
+
         public Color BorderColor
         {
             get => (Color)GetValue(BorderColorProperty);

@@ -3,6 +3,7 @@ using HalcyonCore.Clients;
 using HalcyonCore.Interfaces;
 using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
+using System.Drawing;
 
 namespace HalcyonManager.ViewModels
 {
@@ -39,7 +40,7 @@ namespace HalcyonManager.ViewModels
             ReselectStateColorCommand = new Command((name) =>
             {
                 Picker picker = (Picker)name;
-                StateColor = SetStateColor(picker.SelectedItem.ToString());
+                StateColor = HalcyonCore.SharedEntities.Helpers.SetStateColor(picker.SelectedItem.ToString());
             });
 
             this.PropertyChanged +=
@@ -67,9 +68,13 @@ namespace HalcyonManager.ViewModels
             {
                 HouseHoldMembers = await GetHouseHold();
                 SelectedWorkTask = rawWorkTask;
-                if (String.IsNullOrEmpty(SelectedWorkTask.Name))
+                if (String.IsNullOrEmpty(SelectedWorkTask.Assignment))
                 {
                     SelectedWorkTask.Name = "N/A";
+                }
+                else
+                {
+                    SelectedWorkTask.Name = SelectedWorkTask.Assignment;
                 }
 
                 if (String.IsNullOrEmpty(SelectedWorkTask.PartitionKey) && String.IsNullOrEmpty(SelectedWorkTask.RowKey))
@@ -85,7 +90,7 @@ namespace HalcyonManager.ViewModels
                     ShowDeleteButton = true;
                 }
 
-                StateColor = SetStateColor(SelectedWorkTask.State);
+                StateColor = HalcyonCore.SharedEntities.Helpers.SetStateColor(SelectedWorkTask.State);
 
 
             }
@@ -125,8 +130,8 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _riskList, value);
         }
 
-        private Color _stateColor;
-        public Color StateColor
+        private Microsoft.Maui.Graphics.Color _stateColor;
+        public Microsoft.Maui.Graphics.Color StateColor
         {
             get => _stateColor;
             set => SetProperty(ref _stateColor, value);
@@ -167,16 +172,7 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _showDeleteButton, value);
         }
 
-        public Color SetStateColor(string state)
-        {
-            return state switch
-            {
-                "New" => Color.FromRgb(255, 204, 0),
-                "In Progress" => Color.FromRgb(0, 72, 255),
-                "Done" => Color.FromRgb(0, 102, 0),
-                _ => Color.FromRgb(0, 72, 255),
-            };
-        }
+
 
         public async Task<List<string>> GetHouseHold()
         {
@@ -194,8 +190,8 @@ namespace HalcyonManager.ViewModels
                         newList.Add(member.Name.Trim());
                     }
                 }
-                newList.Add("N/A");
-                return newList;
+                newList.Add("NA");
+                return newList.Order().ToList();
             }
             catch (Exception ex)
             {
@@ -308,21 +304,19 @@ namespace HalcyonManager.ViewModels
             try
             {
                 WorkTaskViewModel rawWorkTaskViewModel = (WorkTaskViewModel)obj;
+                var bb = rawWorkTaskViewModel.HouseHoldMembers;
+
                 WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
                 workTask.Name = String.IsNullOrEmpty(workTask.Name) ? "NA" : workTask.Name;
+
+                var selName = bb[Convert.ToInt32(workTask.Name)];
                 if (HouseHoldMembersList.Count != 0)
                 {
-                    if (workTask.Name == "0")
+                    if (selName != null)
                     {
-                        workTask.Name = "NA";
+                        workTask.Assignment = selName;
                     }
-                    else
-                    {
-                        var blorb = HouseHoldMembersList[Convert.ToInt32(workTask.Name)];
-                        workTask.PhoneNumber = blorb.PhoneNumber;
-                        workTask.Name = blorb.Name;
-                        workTask.Email = blorb.Email;
-                    }
+
                 }
                 workTask.Completed = 0;
                 workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();

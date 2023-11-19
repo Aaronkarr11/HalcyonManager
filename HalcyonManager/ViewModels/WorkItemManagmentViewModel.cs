@@ -9,7 +9,7 @@ namespace HalcyonManager.ViewModels
     public class WorkItemManagmentViewModel : BaseViewModel
     {
         private IHalcyonManagementClient _transactionServices;
-        private OperationModel _selectedOperation;
+        private ProjectModel _selectedProject;
         public Command LoadWorkItemCommand { get; }
         public Command AddItemCommand { get; }
 
@@ -17,7 +17,7 @@ namespace HalcyonManager.ViewModels
 
         public Command<RequestItemResponse> ItemTapped { get; }
 
-        public ICommand GetSelectedOperationsCommand { get; private set; }
+        public ICommand GetSelectedProjectsCommand { get; private set; }
 
         public Command EditWorkTaskCommand { get; private set; }
 
@@ -30,9 +30,9 @@ namespace HalcyonManager.ViewModels
         {
             ShowPicker = false;
             _transactionServices = transactionServices;
-            _selectedOperation = null;
-            OperationList = new List<OperationModel>();
-            WorkItemHierarchy = new List<OperationHierarchy>();
+            _selectedProject = null;
+            ProjectList = new List<ProjectModel>();
+            WorkItemHierarchy = new List<ProjectHierarchy>();
             DeviceFontSize = Helpers.ReturnDeviceFontSize();
             DeviceButtonWidth = Helpers.ReturnDeviceButtonWidth();
 
@@ -46,29 +46,25 @@ namespace HalcyonManager.ViewModels
                 ExecuteEditProjectCommand(project);
             });
 
-            NewProjectCommand = new Command((operation) =>
-            {
-                ExecuteNewProjectCommand(operation);
-            });
 
             NewWorkTaskCommand = new Command((sender) =>
             {
                 ExecuteNewWorkTaskCommand(sender);
             });
 
-            EditOperationCommand = new Command((operation) =>
-            {
-                ExecuteEditOperationCommand(operation);
-            });
+            //EditOperationCommand = new Command((operation) =>
+            //{
+            //    ExecuteEditOperationCommand(operation);
+            //});
 
-            GetSelectedOperationsCommand = new Command((name) =>
+            GetSelectedProjectsCommand = new Command((name) =>
             {
                 Picker picker = (Picker)name;
-                GetWorkTaskHierarchy((OperationModel)picker.SelectedItem);
+                GetWorkTaskHierarchy((ProjectModel)picker.SelectedItem);
             });
         }
 
-        async void GetWorkTaskHierarchy(OperationModel item)
+        async void GetWorkTaskHierarchy(ProjectModel item)
         {
             try
             {
@@ -76,21 +72,21 @@ namespace HalcyonManager.ViewModels
                 {
                     if (item.RowKey == "1")
                     {
-                        ExecuteNewOperationCommand();
+                        ExecuteNewProjectCommand();
                     }
                     else
                     {
-                        _selectedOperation = item;
+                        _selectedProject = item;
                         var result = await _transactionServices.GetWorkItemHierarchy(DeviceInfo.Name.RemoveSpecialCharacters());
                         WorkItemHierarchy = result.Where(e => e.PartitionKey == item.PartitionKey && e.RowKey == item.RowKey).ToList();
 
-                        if (String.IsNullOrEmpty(SelectedOperation))
+                        if (String.IsNullOrEmpty(SelectedProject))
                         {
-                            SelectedOperation = "Work Item Management ";
+                            SelectedProject = "Selected Project ";
                         }
                         else
                         {
-                            SelectedOperation = "Work Item Management: " + item.Title;
+                            SelectedProject = "Selected Project: " + item.Title;
                         }
                     }
                 }
@@ -115,7 +111,7 @@ namespace HalcyonManager.ViewModels
                     Risk = workTask.Risk ?? "3 - Low",
                     SendSMS = workTask.SendSMS,
                     RowKey = workTask.RowKey,
-                    State = workTask.State,
+                    State = workTask.State ?? "New",
                     PartitionKey = workTask.PartitionKey,
                     Effort = workTask.Effort == 0 ? 1 : workTask.Effort,
                     ParentPartitionKey = workTask.ParentPartitionKey,
@@ -175,23 +171,23 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        async void ExecuteNewProjectCommand(object sender)
+
+        async void ExecuteNewProjectCommand()
         {
+            _selectedProject = null;
             try
             {
-                var parentOperation = (OperationHierarchy)sender;
                 ProjectModel projectModel = new ProjectModel
                 {
-                    ParentPartitionKey = parentOperation.PartitionKey,
-                    ParentRowKey = parentOperation.RowKey,
                     StartDate = DateTime.Now,
                     TargetDate = DateTime.Now,
-                    Priority = 4,
                     Severity = "4 - Low",
                     State = "New",
                     LocationCategory = "Whole House",
+                    Priority = 1,
                     Completed = 0
                 };
+
                 var navigationParameter = new Dictionary<string, object>
                     {
                             { "Project", projectModel }
@@ -206,70 +202,41 @@ namespace HalcyonManager.ViewModels
             }
         }
 
-        async void ExecuteNewOperationCommand()
-        {
+        //async void ExecuteEditOperationCommand(object sender)
+        //{
+        //    try
+        //    {
+        //        var operation = (OperationHierarchy)sender;
+        //        OperationModel operationModel = new OperationModel
+        //        {
+        //            PartitionKey = operation.PartitionKey,
+        //            RowKey = operation.RowKey,
+        //            StartDate = operation.StartDate,
+        //            TargetDate = operation.TargetDate,
+        //            Title = operation.Title,
+        //            Description = operation.Description,
+        //            Icon = operation.Icon,
+        //            Completed = 0
+        //        };
 
-            try
-            {
-                OperationModel operationModel = new OperationModel
-                {
-                    StartDate = DateTime.Now,
-                    TargetDate = DateTime.Now,
-                    Icon = "icon.png",
-                    Completed = 0
-                };
-
-                var navigationParameter = new Dictionary<string, object>
-                    {
-                            { "Operation", operationModel }
-                    };
-                await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
-            }
-            catch (Exception ex)
-            {
-                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteNewOperationCommand");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
-                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
-            }
-        }
-
-        async void ExecuteEditOperationCommand(object sender)
-        {
-            try
-            {
-                var operation = (OperationHierarchy)sender;
-                OperationModel operationModel = new OperationModel
-                {
-                    PartitionKey = operation.PartitionKey,
-                    RowKey = operation.RowKey,
-                    StartDate = operation.StartDate,
-                    TargetDate = operation.TargetDate,
-                    Title = operation.Title,
-                    Description = operation.Description,
-                    Icon = operation.Icon,
-                    Completed = 0
-                };
-
-                var navigationParameter = new Dictionary<string, object>
-                    {
-                            { "Operation", operationModel }
-                    };
-                await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
-            }
-            catch (Exception ex)
-            {
-                ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditOperationCommand");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
-                App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
-            }
-        }
+        //        var navigationParameter = new Dictionary<string, object>
+        //            {
+        //                    { "Operation", operationModel }
+        //            };
+        //        await Shell.Current.GoToAsync($"OperationPage", navigationParameter);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditOperationCommand");
+        //        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+        //        App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
+        //    }
+        //}
 
         async void ExecuteEditProjectCommand(object sender)
         {
-
             try
             {
-
                 var prog = (ProjectHierarchy)sender;
                 ProjectModel projectModel = new ProjectModel
                 {
@@ -279,8 +246,6 @@ namespace HalcyonManager.ViewModels
                     State = prog.State,
                     PartitionKey = prog.PartitionKey,
                     LocationCategory = prog.LocationCategory ?? "Whole House",
-                    ParentPartitionKey = prog.ParentPartitionKey,
-                    ParentRowKey = prog.ParentRowKey,
                     Priority = prog.Priority == 0 ? 1 : prog.Priority,
                     StartDate = prog.StartDate,
                     TargetDate = prog.TargetDate,
@@ -305,24 +270,33 @@ namespace HalcyonManager.ViewModels
         {
             try
             {
+
                 IsBusy = true;
-                if (_selectedOperation != null)
+                if (_selectedProject != null)
                 {
-                    OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
-                    GetWorkTaskHierarchy(_selectedOperation);
+                  
+                    PickerTitle = _selectedProject.Title;
+                    GetWorkTaskHierarchy(_selectedProject);
                 }
                 else
                 {
-                    OperationList = await _transactionServices.GetOperationList(DeviceInfo.Name.RemoveSpecialCharacters());
+                    List<ProjectModel> projList = await _transactionServices.GetProjectList(DeviceInfo.Name.RemoveSpecialCharacters());
+                    ProjectList = projList.OrderBy(p => p.CreatedDate).ToList();
+                    if (ProjectList.Count() > 1)
+                    {
+                        _selectedProject = ProjectList.LastOrDefault();
+                        PickerTitle = _selectedProject.Title;
+                        GetWorkTaskHierarchy(_selectedProject);
+                    }
                 }
 
-                if (String.IsNullOrEmpty(SelectedOperation))
+                if (String.IsNullOrEmpty(SelectedProject))
                 {
-                    SelectedOperation = "Work Item Management ";
+                    SelectedProject = "Selected Project ";
                 }
                 else
                 {
-                    SelectedOperation = "Work Item Management: " + _selectedOperation?.Title;
+                    SelectedProject = "Selected Project: " + _selectedProject?.Title;
                 }
                 ShowPicker = true;
                 IsBusy = false;
@@ -334,18 +308,32 @@ namespace HalcyonManager.ViewModels
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
-        
 
-        private List<OperationModel> _operationList;
-        public List<OperationModel> OperationList
+        private string _projectTitle;
+        public string ProjectTitle
         {
-            get => _operationList;
-            set => SetProperty(ref _operationList, value);
+            get => _projectTitle;
+            set => SetProperty(ref _projectTitle, value);
+        }
+
+        private string _pickerTitle;
+        public string PickerTitle
+        {
+            get => _pickerTitle;
+            set => SetProperty(ref _pickerTitle, value);
         }
 
 
-        private List<OperationHierarchy> _workItemHierarchy;
-        public List<OperationHierarchy> WorkItemHierarchy
+        private List<ProjectModel> _projectList;
+        public List<ProjectModel> ProjectList
+        {
+            get => _projectList;
+            set => SetProperty(ref _projectList, value);
+        }
+
+
+        private List<ProjectHierarchy> _workItemHierarchy;
+        public List<ProjectHierarchy> WorkItemHierarchy
         {
             get => _workItemHierarchy;
             set => SetProperty(ref _workItemHierarchy, value);
@@ -365,11 +353,11 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _deviceButtonWidth, value);
         }
 
-        private string _retainedSelectedOperation;
-        public string SelectedOperation
+        private string _retainedSelectedProject;
+        public string SelectedProject
         {
-            get => _retainedSelectedOperation;
-            set => SetProperty(ref _retainedSelectedOperation, value);
+            get => _retainedSelectedProject;
+            set => SetProperty(ref _retainedSelectedProject, value);
         }
 
 
