@@ -30,13 +30,14 @@
                         <RowDefinition Height="50" />
                         <RowDefinition Height="10"  />
                         <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
@@ -48,13 +49,13 @@
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <BoxView Grid.Row="1"
-                             Grid.ColumnSpan="2"
+                             Grid.ColumnSpan="3"
                              BackgroundColor="{Binding BorderColor}"
                              HeightRequest="2"
                              HorizontalOptions="Fill" />
                     <Label Grid.Column="0"
                            Grid.Row="2"
-                           Grid.ColumnSpan="3"
+                           Grid.ColumnSpan="4"
                            Text="{Binding WorkTaskDescription}"
                            FontAttributes="Bold"
                            FontSize="Small"
@@ -62,45 +63,43 @@
                            HorizontalTextAlignment="Start" />
                     <Label Grid.Column="0"
                            Grid.Row="3"
-                           Grid.ColumnSpan="3"
-                           Text="Start Date"
+                           Grid.ColumnSpan="2"
+                           Text="Start Date:"
                            FontAttributes="Bold"
                            FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
-                    <Label Grid.Column="1"
+                    <Label Grid.Column="2"
                            Grid.Row="3"
                            Grid.ColumnSpan="2"
                            Text="{Binding WorkTaskStartDate}"
-                           FontAttributes="Bold"
                            FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <Label Grid.Column="0"
                            Grid.Row="4"
-                           Grid.ColumnSpan="3"
-                           Text="Target Date"
+                           Text="Target Date:"
+                           Grid.ColumnSpan="2"
                            FontAttributes="Bold"
                            FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
-                    <Label Grid.Column="1"
+                    <Label Grid.Column="2"
                            Grid.Row="4"
                            Grid.ColumnSpan="2"
                            Text="{Binding WorkTaskTargetDate}"
-                           FontAttributes="Bold"
                            FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <Label Grid.Column="0"
                            Grid.Row="5"
                            Grid.ColumnSpan="3"
-                           Text="Status"
+                           Text="State:"
                            FontAttributes="Bold"
                            FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
-                    <Label Grid.Column="1"
+                    <Label Grid.Column="2"
                            Grid.Row="5"
                            Grid.ColumnSpan="2"
                            Text="{Binding WorkTaskState}"
@@ -116,7 +115,7 @@
                             WidthRequest="{Binding DeviceButtonWidth}"
                             FontSize="Small"
                             Grid.Column="0"
-                            Grid.ColumnSpan="1"
+                            Grid.ColumnSpan="2"
                             Text="Edit">
                         <Button.Behaviors>
                             <toolkit:EventToCommandBehavior

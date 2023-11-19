@@ -41,10 +41,10 @@
                                 <Label FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" Text="Phone" FontSize="Medium" />
                                 <Entry Keyboard="Numeric" Text="{Binding SelectedHouseHoldMember.PhoneNumber, Mode=TwoWay}"></Entry>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0">
+                            <StackLayout Orientation="Vertical" Margin="5,5,5,5" Grid.Row="3" Grid.Column="0">
                                 <Button Command="{Binding SaveCommand}" CommandParameter="{Binding .}" Text="Save"  HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="1">
+                            <StackLayout Orientation="Vertical" Margin="5,5,5,5"  Grid.Row="3" Grid.Column="1">
                                 <Button Command="{Binding CancelCommand}" Text="Cancel" BackgroundColor="Goldenrod" HorizontalOptions="FillAndExpand"></Button>
                             </StackLayout>
                         </Grid>

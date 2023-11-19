@@ -70,11 +70,11 @@ namespace HalcyonManager.ViewModels
                 SelectedWorkTask = rawWorkTask;
                 if (String.IsNullOrEmpty(SelectedWorkTask.Assignment))
                 {
-                    SelectedWorkTask.Name = "N/A";
+                    SelectedWorkTask.Assignment = "N/A";
                 }
                 else
                 {
-                    SelectedWorkTask.Name = SelectedWorkTask.Assignment;
+                    SelectedWorkTask.Assignment = SelectedWorkTask.Assignment;
                 }
 
                 if (String.IsNullOrEmpty(SelectedWorkTask.PartitionKey) && String.IsNullOrEmpty(SelectedWorkTask.RowKey))
@@ -190,7 +190,7 @@ namespace HalcyonManager.ViewModels
                         newList.Add(member.Name.Trim());
                     }
                 }
-                newList.Add("NA");
+                newList.Add("N/A");
                 return newList.Order().ToList();
             }
             catch (Exception ex)
@@ -307,9 +307,23 @@ namespace HalcyonManager.ViewModels
                 var bb = rawWorkTaskViewModel.HouseHoldMembers;
 
                 WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
-                workTask.Name = String.IsNullOrEmpty(workTask.Name) ? "NA" : workTask.Name;
+                workTask.Assignment = String.IsNullOrEmpty(workTask.Assignment) ? "N/A" : workTask.Assignment;
 
-                var selName = bb[Convert.ToInt32(workTask.Name)];
+                string selName = string.Empty;
+                if (workTask.Assignment == "N/A")
+                {
+                    selName = "N/A";
+                }
+                else
+                {
+                    //var pog = bb[Convert.ToInt32(workTask.Assignment.Trim())];
+                    selName = bb.Where(p => p == workTask.Assignment.Trim()).FirstOrDefault();
+                    if (string.IsNullOrEmpty(selName))
+                    {
+                        selName = "N/A";
+                    }
+                }
+
                 if (HouseHoldMembersList.Count != 0)
                 {
                     if (selName != null)
@@ -321,8 +335,8 @@ namespace HalcyonManager.ViewModels
                 workTask.Completed = 0;
                 workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
                 string url = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
-                var pagger = JsonConvert.SerializeObject(workTask);
-                var pog = _transactionServices.AzureFunctionPostTransaction(url, pagger);
+                var desObj = JsonConvert.SerializeObject(workTask);
+                var result = _transactionServices.AzureFunctionPostTransaction(url, desObj);
                 await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex)
