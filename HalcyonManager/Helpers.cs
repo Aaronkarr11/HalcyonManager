@@ -1,6 +1,4 @@
 ﻿using HalcyonCore.SharedEntities;
-using HalcyonManager.ViewModels;
-using Microsoft.IdentityModel.Tokens;
 
 namespace HalcyonManager
 {
@@ -70,7 +68,7 @@ namespace HalcyonManager
 
         public static bool IsPhoneValid(HouseHoldMember houseHoldMemberViewModel)
         {
-            if (!houseHoldMemberViewModel.PhoneNumber.IsNullOrEmpty())
+            if (houseHoldMemberViewModel.PhoneNumber != null)
             {
                 var test = HalcyonCore.Utilities.Extensions.RemoveSpecialCharacters(houseHoldMemberViewModel.PhoneNumber);
                 if (test.Length == 10)

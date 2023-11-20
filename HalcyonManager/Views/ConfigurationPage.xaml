@@ -36,6 +36,16 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
+                <Button Text="Error Logs" Clicked="ErrorLogs_Clicked"  Margin="1,10,0,0" TextColor="White">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="#40568d"
+                          Offset="0.1" />
+                            <GradientStop Color="#101523"
+                          Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
             </StackLayout>
         </ScrollView>
     </Grid>

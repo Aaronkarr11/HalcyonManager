@@ -40,44 +40,6 @@
                              BackgroundColor="Black"
                              HeightRequest="2"
                              HorizontalOptions="Fill" />
-                        <StackLayout Orientation="Vertical" MinimumWidthRequest="100" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                            <Label FontSize="Medium" FontAttributes="Bold">
-                                Operation
-                            </Label>
-                            <Label FontSize="Small" Margin="0,0,0,5">
-                                A high-level work item. This may be perpetual, or temporary. It acts as a top-level parent for related work items. It is mostly used to define and organize house renovations or major projects.
-                            </Label>
-                            <Label FontAttributes="Bold" FontSize="Small">
-                                Title:
-                            </Label>
-                            <Label FontSize="Small">
-                                The name of the Operation. It contains the prefix "Operation."
-                            </Label>
-                            <Label FontAttributes="Bold" FontSize="Small">
-                                Description:
-                            </Label>
-                            <Label FontSize="Small">
-                                A description that best describes the Operation.
-                            </Label>
-                            <Label FontAttributes="Bold" FontSize="Small">
-                                Start Date:
-                            </Label>
-                            <Label FontSize="Small">
-                                The start date of the operation. It can be modified as needed.
-                            </Label>
-                            <Label FontAttributes="Bold" FontSize="Small">
-                                Target Date:
-                            </Label>
-                            <Label FontSize="Small">
-                                The operation's projected completion date. It can be modified as needed (not ideal).
-                            </Label>
-                            <Label FontAttributes="Bold" FontSize="Small">
-                                Icon:
-                            </Label>
-                            <Label FontSize="Small">
-                                The name of an Icon used for the Operation. It is not currently used.
-                            </Label>
-                        </StackLayout>
                         <BoxView Grid.Row="3"
                              Grid.ColumnSpan="2"
                              BackgroundColor="Black"

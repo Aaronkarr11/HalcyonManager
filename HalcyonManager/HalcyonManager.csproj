@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041</TargetFrameworks>
+		<!--<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>-->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>HalcyonManager</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -27,6 +27,14 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<AssemblyName>HalcyonManager</AssemblyName>
+		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>E065D7CF4F735D6A6808FC45CAD5EF0FAEBEC167</PackageCertificateThumbprint>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
@@ -44,7 +52,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#e2eafc" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splashscreen.png" Color="#003366" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splashscreen.png" Color="#e2eafc" BaseSize="128,128" />
 		
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -76,6 +84,7 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="HalcyonCore" Version="1.0.27" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.701" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -84,14 +93,13 @@
 		<PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\HalcyonCore\HalcyonCore.csproj" />
-	</ItemGroup>
-
 
 	<ItemGroup>
 	  <Compile Update="Views\ConfigurationPage.xaml.cs">
 	    <DependentUpon>ConfigurationPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ErrorLogPage.xaml.cs">
+	    <DependentUpon>ErrorLogPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\MainPage.xaml.cs">
 	    <DependentUpon>MainPage.xaml</DependentUpon>
@@ -106,6 +114,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HelpPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ErrorLogPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MainPage.xaml">

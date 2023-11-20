@@ -1,5 +1,4 @@
-﻿using Azure;
-using HalcyonCore.Interfaces;
+﻿using HalcyonCore.Interfaces;
 using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
 using System.Windows.Input;
@@ -281,10 +280,10 @@ namespace HalcyonManager.ViewModels
                 else
                 {
                     List<ProjectModel> projList = await _transactionServices.GetProjectList(DeviceInfo.Name.RemoveSpecialCharacters());
-                    ProjectList = projList.OrderBy(p => p.CreatedDate).ToList();
+                    ProjectList = projList.OrderBy(p => p.ConvertedDateTimeStamp).ToList();
                     if (ProjectList.Count() > 1)
                     {
-                        _selectedProject = ProjectList.LastOrDefault();
+                        _selectedProject = ProjectList.Where(i => i.ConvertedDateTimeStamp != 0).LastOrDefault();
                         PickerTitle = _selectedProject.Title;
                         GetWorkTaskHierarchy(_selectedProject);
                     }

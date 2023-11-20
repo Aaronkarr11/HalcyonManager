@@ -16,5 +16,10 @@
         {
             Shell.Current.GoToAsync($"HelpPage");
         }
+
+        private void ErrorLogs_Clicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync($"ErrorLogPage");
+        }
     }
 }
