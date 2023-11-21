@@ -64,7 +64,7 @@ namespace HalcyonManager.ViewModels
                 WorkTaskModel workTaskModel = new WorkTaskModel
                 {
                     Title = workTask.Title,
-                    Name = workTask?.Name.Trim(),
+                    Assignment = workTask?.Assignment.Trim(),
                     Risk = workTask?.Risk ?? "3 - Low",
                     SendSMS = workTask.SendSMS,
                     RowKey = workTask?.RowKey,

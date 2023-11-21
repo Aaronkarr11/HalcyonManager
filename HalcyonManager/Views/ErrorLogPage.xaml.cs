@@ -1,22 +1,22 @@
-﻿using HalcyonManager.ViewModels;
 using HalcyonCore.Interfaces;
+using HalcyonManager.ViewModels;
 
-namespace HalcyonManager.Views
+namespace HalcyonManager.Views;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class ErrorLogPage : ContentPage
 {
-    public partial class ErrorLogPage : ContentPage
+    ErrorLogViewModel _viewModel;
+    public ErrorLogPage()
     {
-        ErrorLogViewModel _viewModel;
-        public ErrorLogPage()
-        {
-            InitializeComponent();
-            var service = DependencyService.Get<IHalcyonManagementClient>();
-            BindingContext = new ErrorLogViewModel(service);
-        }
+        InitializeComponent();
+        var service = DependencyService.Get<IHalcyonManagementClient>();
+        BindingContext = _viewModel = new ErrorLogViewModel(service);
+    }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _viewModel.OnAppearing();
-        }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _viewModel.OnAppearing();
     }
 }

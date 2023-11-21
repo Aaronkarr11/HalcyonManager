@@ -19,7 +19,7 @@
 
         private void ErrorLogs_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync($"ErrorLogPage");
+            Shell.Current.GoToAsync("ErrorLogPage");
         }
     }
 }

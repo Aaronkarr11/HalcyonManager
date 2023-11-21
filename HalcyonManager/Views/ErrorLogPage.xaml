@@ -1,52 +1,47 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HalcyonManager.Views.ErrorLogPage"
-             Shell.PresentationMode="ModalAnimated"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:HalcyonCore.SharedEntities;assembly=HalcyonCore" 
              xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"
-             xmlns:behavior="clr-namespace:HalcyonManager.Behaviors"
              x:DataType="viewmodels:ErrorLogViewModel"
-             Title="Error Logs"
+             Title="Application Error Log"
              BackgroundImageSource="sky.jpg">
 
-    <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Spacing="4" Padding="15" BackgroundColor="#40568d">
-                <Label FontSize="Large" TextColor="White" Text="{Binding ErrorPageTitle}"></Label>
-            </StackLayout>
-            <ScrollView Padding="15" VerticalOptions="FillAndExpand">
-                <Frame CornerRadius="10"  Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
-                    <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BindableLayout.ItemsSource="{Binding ErrorLogList}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout x:DataType="model:ErrorLogModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                    </Grid>
-                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Message}" FontSize="Small"></Label>
-                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding ClassName}" FontSize="Small"></Label>
-
-                                    <Label Grid.Row="0" Grid.Column="4" Text="{Binding MethodName}" FontSize="Small"></Label>
-
-
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                </Frame>
-            </ScrollView>
+    <StackLayout>
+        <StackLayout Spacing="4" Padding="15" BackgroundColor="#40568d">
+            <Label FontSize="Large" TextColor="White" Text="{Binding ErrorPageTitle}"></Label>
         </StackLayout>
-    </ContentPage.Content>
+        <ScrollView Padding="15" VerticalOptions="FillAndExpand">
+            <Frame CornerRadius="10"  Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="#ccd5f0">
+                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BindableLayout.ItemsSource="{Binding ErrorLogList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:ErrorLogModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Message}" FontSize="Small"></Label>
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding ClassName}" FontSize="Small"></Label>
+                                <Label Grid.Row="0" Grid.Column="4" Text="{Binding MethodName}" FontSize="Small"></Label>
+                                <BoxView Grid.Row="1" Margin="0,0,0,10" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="2" HorizontalOptions="Fill" />
 
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

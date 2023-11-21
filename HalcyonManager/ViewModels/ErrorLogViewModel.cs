@@ -1,26 +1,30 @@
-﻿using HalcyonCore.Clients;
-using HalcyonManager.Views;
-using HalcyonCore.SharedEntities;
-using System.Diagnostics;
-using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using HalcyonCore.Interfaces;
+using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 
 namespace HalcyonManager.ViewModels
 {
-    //[QueryProperty(nameof(RequestItem), nameof(RequestItem))]
-    public class ErrorLogViewModel : BaseViewModel
+    public class ErrorLogViewModel: BaseViewModel
     {
+
         private IHalcyonManagementClient _transactionServices;
+        public Command ExecuteNewMemberCommand { get; }
 
         public ErrorLogViewModel(IHalcyonManagementClient transactionServices)
         {
             _transactionServices = transactionServices;
-        }
 
-        public async void OnAppearing()
+            ExecuteNewMemberCommand = new Command(() =>
+            {
+                ExecuteNewMember();
+            });
+
+        }
+    
+
+
+        public async Task OnAppearing()
         {
             IsBusy = true;
 
@@ -48,6 +52,10 @@ namespace HalcyonManager.ViewModels
             }
         }
 
+        public async void ExecuteNewMember()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
 
 
         private List<ErrorLogModel> _errorLogList;
@@ -65,6 +73,8 @@ namespace HalcyonManager.ViewModels
             get => _errorPageTitle;
             set => SetProperty(ref _errorPageTitle, value);
         }
+
+
 
     }
 }

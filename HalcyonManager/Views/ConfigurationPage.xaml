@@ -16,36 +16,9 @@
         </Grid.ColumnDefinitions>
         <ScrollView Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical">
-                <Button Text="Household Managment"  Margin="1,0,0,0" Clicked="Button_Clicked" TextColor="White">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="1,0">
-                            <GradientStop Color="#40568d"
-                          Offset="0.1" />
-                            <GradientStop Color="#101523"
-                          Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button Text="Help" Clicked="HelpButton_Clicked"  Margin="1,10,0,0" TextColor="White">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="1,0">
-                            <GradientStop Color="#40568d"
-                          Offset="0.1" />
-                            <GradientStop Color="#101523"
-                          Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button Text="Error Logs" Clicked="ErrorLogs_Clicked"  Margin="1,10,0,0" TextColor="White">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="1,0">
-                            <GradientStop Color="#40568d"
-                          Offset="0.1" />
-                            <GradientStop Color="#101523"
-                          Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
+                <Button Text="Household Managment" BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="Button_Clicked"></Button>
+                <Button Text="Help" BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="HelpButton_Clicked"></Button>
+                <Button Text="Error Logs"  BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="ErrorLogs_Clicked"></Button>
             </StackLayout>
         </ScrollView>
     </Grid>

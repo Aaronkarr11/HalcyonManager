@@ -269,17 +269,17 @@ namespace HalcyonManager.ViewModels
         {
             try
             {
-
+                List<ProjectModel> projList = await _transactionServices.GetProjectList(DeviceInfo.Name.RemoveSpecialCharacters());
                 IsBusy = true;
                 if (_selectedProject != null)
                 {
-                  
+                    ProjectList = projList.OrderBy(p => p.ConvertedDateTimeStamp).ToList();
                     PickerTitle = _selectedProject.Title;
                     GetWorkTaskHierarchy(_selectedProject);
                 }
                 else
                 {
-                    List<ProjectModel> projList = await _transactionServices.GetProjectList(DeviceInfo.Name.RemoveSpecialCharacters());
+
                     ProjectList = projList.OrderBy(p => p.ConvertedDateTimeStamp).ToList();
                     if (ProjectList.Count() > 1)
                     {

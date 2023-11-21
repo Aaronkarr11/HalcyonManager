@@ -9,6 +9,7 @@ public partial class AppShell : Shell
 	{
         InitializeComponent();
         BindingContext = new AppShellViewModel();
+        Routing.RegisterRoute(nameof(ErrorLogPage), typeof(ErrorLogPage));
         Routing.RegisterRoute(nameof(ProjectPage), typeof(ProjectPage));
         Routing.RegisterRoute(nameof(OperationPage), typeof(OperationPage));
         Routing.RegisterRoute(nameof(WorkTaskPage), typeof(WorkTaskPage));
@@ -16,7 +17,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         Routing.RegisterRoute(nameof(HouseHoldManagmentPage), typeof(HouseHoldManagmentPage));
         Routing.RegisterRoute(nameof(HouseHoldMemberPage), typeof(HouseHoldMemberPage));
-        Routing.RegisterRoute(nameof(ErrorLogPage), typeof(ErrorLogPage));
         Routing.RegisterRoute(nameof(HelpPage), typeof(HelpPage));
     }
 }

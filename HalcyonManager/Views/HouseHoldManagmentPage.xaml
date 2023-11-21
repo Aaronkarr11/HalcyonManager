@@ -15,7 +15,7 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <StackLayout  BackgroundColor="CornflowerBlue" >
+            <StackLayout  BackgroundColor="#003366" >
                 <Label FontSize="Medium"  Margin="0,10,5,0" HeightRequest="55" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"  TextColor="White">
                     Select the "Plus" icon above to add new members
                 </Label>
