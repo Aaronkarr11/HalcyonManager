@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels" 
-             xmlns:model="clr-namespace:HalcyonManager.Models"
+             xmlns:model="clr-namespace:HalcyonCore.SharedEntities;assembly=HalcyonCore" 
              x:DataType="viewmodels:ItemRequestViewModel"
              xmlns:controls="clr-namespace:HalcyonManager.Controls"
              x:Class="HalcyonManager.Views.ItemRequestPage"
@@ -85,7 +85,7 @@
     <StackLayout>
         <StackLayout HeightRequest="100" BackgroundColor="CornflowerBlue">
             <Label FontSize="Medium"  Margin="0,10,0,0" HorizontalOptions="CenterAndExpand" FontFamily="Bold" TextColor="White">REQUESTED ITEMS/SUPPLIES</Label>
-            <Label FontSize="Small"  Margin="0,10,5,0" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"  TextColor="White"> 
+            <Label FontSize="Small"  Margin="0,10,5,0" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"  TextColor="White">
                 Request needed supplies or tools. View and remove items by checking "complete" Create/refresh items in the above right
             </Label>
         </StackLayout>
@@ -93,7 +93,7 @@
             <CollectionView x:Name="RequestItemsListView" ItemsSource="{Binding RequestItems}" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10" x:DataType="model:RequestItemResponse">
+                        <StackLayout Padding="10" x:DataType="model:RequestItemsTableTemplate">
                             <controls:CardView BorderColor="DarkGray"
                            CardTitle="{Binding Title}"
                            CardDescription="{Binding DesiredDate}"

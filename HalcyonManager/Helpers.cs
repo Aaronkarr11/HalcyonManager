@@ -66,6 +66,18 @@ namespace HalcyonManager
             return error;
         }
 
+        public static ErrorLogModel ReturnLogMessage(string message, string className, string nethodName)
+        {
+            ErrorLogModel error = new ErrorLogModel();
+            error.Message = message;
+            error.ClassName = className;
+            error.MethodName = nethodName;
+            error.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
+            error.PartitionKey = System.Guid.NewGuid().ToString();
+            error.RowKey = System.Guid.NewGuid().ToString();
+            return error;
+        }
+
         public static bool IsPhoneValid(HouseHoldMember houseHoldMemberViewModel)
         {
             if (houseHoldMemberViewModel.PhoneNumber != null)

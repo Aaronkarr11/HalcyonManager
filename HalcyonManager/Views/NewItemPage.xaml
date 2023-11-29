@@ -13,8 +13,8 @@
             <Label Text="Request Date" FontSize="Medium" />
             <DatePicker Date="{Binding RequestedDate, Mode=TwoWay}" FontSize="Medium" Margin="0"  />
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel"   Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save"  Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancel" Margin="0,0,10,0" BackgroundColor="Goldenrod" TextColor="White" FontAttributes="Bold" FontSize="Medium"    Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Margin="0,0,10,0" BackgroundColor="#006600" TextColor="White" FontAttributes="Bold" FontSize="Medium"  Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
