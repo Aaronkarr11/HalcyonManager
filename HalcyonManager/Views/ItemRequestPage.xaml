@@ -93,10 +93,10 @@
             <CollectionView x:Name="RequestItemsListView" ItemsSource="{Binding RequestItems}" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10" x:DataType="model:RequestItemsTableTemplate">
+                        <StackLayout Padding="10" x:DataType="model:RequestItemsModel">
                             <controls:CardView BorderColor="DarkGray"
                            CardTitle="{Binding Title}"
-                           CardDescription="{Binding DesiredDate}"
+                           CardDescription="{Binding DesiredDateDisplay}"
                            CardColor="Azure"
                            FullfillCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ItemRequestViewModel}}, Path=CompleteCommand}"
                            CommandParameter="{Binding .}"

@@ -6,8 +6,7 @@
     xmlns:local="clr-namespace:HalcyonManager"
     xmlns:views="clr-namespace:HalcyonManager.Views"
     xmlns:viewmodels="clr-namespace:HalcyonManager.ViewModels"
-    x:DataType="viewmodels:AppShellViewModel"
-    Shell.FlyoutBehavior="Flyout">
+    x:DataType="viewmodels:AppShellViewModel">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -24,13 +23,12 @@
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
     
     
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" IsVisible="{Binding DeviceNavigationMobile}">
+    <TabBar FlyoutDisplayOptions="AsMultipleItems" IsVisible="{Binding DeviceNavigationMobile}">
         <Tab Title="Home" Icon="icon_about.png" IsVisible="True">
                 <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
             </Tab>
@@ -46,7 +44,7 @@
         <Tab Title="Settings" Icon="icon_gear.png" IsVisible="True">
             <ShellContent Route="ConfigurationPage" ContentTemplate="{DataTemplate views:ConfigurationPage}" />
         </Tab>
-    </FlyoutItem>
+    </TabBar>
 
 
     <TabBar IsVisible="{Binding DeviceNavigationDesktop}">

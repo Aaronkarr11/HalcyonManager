@@ -28,7 +28,7 @@ namespace HalcyonManager.Views
 
         private void AboutButton_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Version 1.1.0", $"Copyright {DateTime.Now.Year} - Aaron Karr - made with love <3", "OK");
+            DisplayAlert("Version 1.3.0", $"Copyright {DateTime.Now.Year} - Aaron Karr - made with love <3", "OK");
         }
     }
 }

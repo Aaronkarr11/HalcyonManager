@@ -44,7 +44,7 @@ namespace HalcyonManager.ViewModels
         {
             try
             {
-                RequestItemsTableTemplate item = (RequestItemsTableTemplate)obj;
+                RequestItemsModel item = (RequestItemsModel)obj;
 
                 RequestItemsTableTemplate request = new RequestItemsTableTemplate();
                 request.PartitionKey = item.PartitionKey;
@@ -93,8 +93,8 @@ namespace HalcyonManager.ViewModels
         }
 
 
-        private List<RequestItemsTableTemplate> _requestItems;
-        public List<RequestItemsTableTemplate> RequestItems
+        private List<RequestItemsModel> _requestItems;
+        public List<RequestItemsModel> RequestItems
         {
             get => _requestItems;
             set => SetProperty(ref _requestItems, value);
