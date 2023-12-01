@@ -257,7 +257,7 @@ namespace HalcyonManager.ViewModels
                         WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
                         workTask.Completed = 0;
                         workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteWorkTask?code=DIOvU7r9ZzhBueyTY3MsGYTruIZZ6ZNr4RgIiectKgobAzFu6omBNA==";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(workTask));
                         await Shell.Current.GoToAsync("..");
                     }
