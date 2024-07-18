@@ -92,7 +92,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "LoadItemId");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -244,14 +244,14 @@ namespace HalcyonManager.ViewModels
                         ProjectModel project = rawProjectViewModel.SelectedProject;
                         project.Completed = 0;
                         project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteProject?code=pXjfkwCmnacaaS7y0O2DAaNmX7XmXqlWvIvf1WVRP7hNAzFu7jzbUg==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteProject?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
                         await Shell.Current.GoToAsync("..");
                     }
                     catch (Exception ex)
                     {
                         ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "LoadItemId");
-                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                         App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
@@ -272,14 +272,14 @@ namespace HalcyonManager.ViewModels
                         ProjectModel project = rawProjectViewModel.SelectedProject;
                         project.Completed = 1;
                         project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteProject?code=pXjfkwCmnacaaS7y0O2DAaNmX7XmXqlWvIvf1WVRP7hNAzFu7jzbUg==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteProject?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
                         await Shell.Current.GoToAsync("..");
                     }
                     catch (Exception ex)
                     {
                         ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "OnComplete");
-                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                         App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
@@ -294,14 +294,14 @@ namespace HalcyonManager.ViewModels
                 ProjectModel project = rawProjectViewModel.SelectedProject;
                 project.Completed = 0;
                 project.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateProject?code=pXxnpM-HTEqO09hiojLhDlNTBvKbcNEO4q0k3oI3MdH9AzFuXqaI3g==";
+                string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateProject?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                 await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(project));
                 await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "ProjectViewModel", "OnComplete");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }

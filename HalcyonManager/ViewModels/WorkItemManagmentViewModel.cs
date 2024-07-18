@@ -93,7 +93,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "GetWorkTaskHierarchy");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -131,7 +131,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditWorkTaskCommand");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -165,7 +165,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteNewWorkTaskCommand");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -196,7 +196,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteNewProjectCommand");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -227,7 +227,7 @@ namespace HalcyonManager.ViewModels
         //    catch (Exception ex)
         //    {
         //        ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditOperationCommand");
-        //        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+        //        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
         //        App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
         //    }
         //}
@@ -260,7 +260,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "ExecuteEditProjectCommand");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -303,7 +303,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkItemManagmentViewModel", "OnAppearing");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }

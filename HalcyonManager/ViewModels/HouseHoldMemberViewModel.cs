@@ -62,7 +62,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "HouseHoldMemberViewModel", "LoadItemId");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -107,7 +107,7 @@ namespace HalcyonManager.ViewModels
                 if (Helpers.IsPhoneValid(houseHold))
                 {       
                     houseHold.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                    string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateHouseHold?code=aif1grIlMPqD97ETmutltxOPRYUx0YB0kKjWK_M73V0zAzFuqr8g5w==";
+                    string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateHouseHold?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                     await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(houseHold));
                     await Shell.Current.GoToAsync("..");
                 }
@@ -121,7 +121,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "HouseHoldMemberViewModel", "OnSave");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }

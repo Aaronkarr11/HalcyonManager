@@ -1,9 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using HalcyonCore.Clients;
-using HalcyonCore.Interfaces;
+﻿using HalcyonCore.Interfaces;
 using HalcyonCore.SharedEntities;
 using Newtonsoft.Json;
-using System.Drawing;
 
 namespace HalcyonManager.ViewModels
 {
@@ -97,7 +94,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkTaskViewModel", "LoadItemId");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
@@ -196,7 +193,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkTaskViewModel", "GetHouseHold");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                 return newList;
             }
@@ -257,14 +254,14 @@ namespace HalcyonManager.ViewModels
                         WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
                         workTask.Completed = 0;
                         workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteWorkTask?code=DIOvU7r9ZzhBueyTY3MsGYTruIZZ6ZNr4RgIiectKgobAzFu6omBNA==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/DeleteOrCompleteWorkTask?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(workTask));
                         await Shell.Current.GoToAsync("..");
                     }
                     catch (Exception ex)
                     {
                         ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkTaskViewModel", "OnDelete");
-                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                         App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
@@ -283,14 +280,14 @@ namespace HalcyonManager.ViewModels
                         WorkTaskModel workTask = rawWorkTaskViewModel.SelectedWorkTask;
                         workTask.Completed = 1;
                         workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                        string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
+                        string uri = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                         await _transactionServices.AzureFunctionPostTransaction(uri, JsonConvert.SerializeObject(workTask));
                         await Shell.Current.GoToAsync("..");
                     }
                     catch (Exception ex)
                     {
                         ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkTaskViewModel", "OnComplete");
-                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                        await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                         App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
                     }
                 }
@@ -334,7 +331,7 @@ namespace HalcyonManager.ViewModels
                 }
                 workTask.Completed = 0;
                 workTask.DeviceName = DeviceInfo.Name.RemoveSpecialCharacters();
-                string url = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fS1CcIz4Z6wuGSwknRMem2YrXsve5-fMbHLaevBZWuHFAzFuNIGQfQ==";
+                string url = "https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateWorkTask?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D";
                 var desObj = JsonConvert.SerializeObject(workTask);
                 var result = _transactionServices.AzureFunctionPostTransaction(url, desObj);
                 await Shell.Current.GoToAsync("..");
@@ -342,7 +339,7 @@ namespace HalcyonManager.ViewModels
             catch (Exception ex)
             {
                 ErrorLogModel error = Helpers.ReturnErrorMessage(ex, "WorkTaskViewModel", "OnSave");
-                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=L9qTodcWmd_SyBsd5tGJucvCYhEY0gCzn4EMW0BM5rpXAzFuwcCuBQ==", JsonConvert.SerializeObject(error));
+                await _transactionServices.AzureFunctionPostTransaction("https://halcyontransactions.azurewebsites.net/api/CreateOrUpdateErrorLog?code=fXB5yroHKAH8GBb3M9VouDv2WTNjOR0AeBa_McAn6i6bAzFuJ2yxJg%3D%3D", JsonConvert.SerializeObject(error));
                 App._alertSvc.ShowAlert("Exception!", $"{ex.Message}");
             }
         }
