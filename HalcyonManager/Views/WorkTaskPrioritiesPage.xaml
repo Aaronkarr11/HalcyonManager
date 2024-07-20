@@ -27,6 +27,8 @@
                                         <RowDefinition Height="25" />
                                         <RowDefinition Height="25" />
                                         <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="55" />
                                         <RowDefinition Height="50" />
                                     </Grid.RowDefinitions>
                                     <Label Grid.Column="0" Grid.Row="0">Title</Label>
@@ -40,7 +42,7 @@
                                     <Button
                                    BackgroundColor="#023e8a"
                                    Grid.Column="0"
-                                   Grid.Row="3"
+                                   Grid.Row="4"
                                    Grid.ColumnSpan="3"
                                    Text="Edit Task"
                                    FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkTaskPrioritiesViewModel}}, Path=DeviceFontSize}"

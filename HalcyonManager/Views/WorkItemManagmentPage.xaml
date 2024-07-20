@@ -241,6 +241,8 @@
                                                 <RowDefinition />
                                                 <RowDefinition />
                                                 <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition Height="40" />
                                             </Grid.RowDefinitions>
 
                                             <Label Grid.Row="0" Grid.RowSpan="2" Margin="0,0,0,0" TextColor="White" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Large" />
@@ -251,7 +253,7 @@
                                             <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" TextColor="White" Margin="0,0,10,20" Text="{Binding DisplayTargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
                                             <Button
                                                                     Grid.Row="5" 
-                                                                    Grid.RowSpan="3" 
+                                                                    Grid.RowSpan="4" 
                                                                     Grid.Column="0"
                                                                     HeightRequest="40"
                                                                     WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
@@ -264,7 +266,7 @@
                                             <Button
                                                                     BackgroundColor="{StaticResource ButtonEdit}"
                                                                     Grid.Row="5" 
-                                                                    Grid.RowSpan="3"
+                                                                    Grid.RowSpan="4"
                                                                     HeightRequest="40"
                                                                     Grid.Column="4"
                                                                     WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
