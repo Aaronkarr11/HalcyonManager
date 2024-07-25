@@ -13,6 +13,9 @@ A mobile and desktop app used to manage a house (Halcyon in particular).
 
 ### Updates 
 
+7/24/2024 - 1.3.8
+- Fixed issue with Frame control in affected views
+
 7/10/2024 - 1.3.6
 - upgraded to .net 8
 - updated nuget

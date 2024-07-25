@@ -10,6 +10,7 @@
              Title="{Binding SelectedProject}"
              BackgroundImageSource="sky.jpg">
 
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Help" Clicked="HelpButton_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -24,7 +25,7 @@
                    Padding="10"
                    Margin="5"
                    HorizontalOptions="FillAndExpand"
-                   VerticalOptions="Center">
+                   VerticalOptions="CenterAndExpand">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
@@ -34,6 +35,7 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="20" />
                         <RowDefinition Height="50" />
+                        <RowDefinition Height="25" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
@@ -52,7 +54,7 @@
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <BoxView Grid.Row="1"
-                             Grid.ColumnSpan="3"
+                             Grid.ColumnSpan="7"
                              BackgroundColor="{Binding BorderColor}"
                              HeightRequest="2"
                              HorizontalOptions="Fill" />
@@ -218,12 +220,11 @@
 
 
             <ScrollView VerticalOptions="FillAndExpand">
-
                 <StackLayout>
                     <StackLayout BindableLayout.ItemsSource="{Binding WorkItemHierarchy}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Frame CornerRadius="10" Margin="10, 5, 5, 5" HasShadow="True" BackgroundColor="{StaticResource Tertiary}">
+                                <Border Padding="10"  Margin="10, 5, 5, 5" BackgroundColor="{StaticResource Tertiary}">
                                     <StackLayout x:DataType="model:ProjectHierarchy" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                         <Grid Margin="0,0,0,0">
                                             <Grid.ColumnDefinitions>
@@ -241,8 +242,8 @@
                                                 <RowDefinition />
                                                 <RowDefinition />
                                                 <RowDefinition />
-                                                <RowDefinition />
-                                                <RowDefinition Height="40" />
+                                               
+                                            
                                             </Grid.RowDefinitions>
 
                                             <Label Grid.Row="0" Grid.RowSpan="2" Margin="0,0,0,0" TextColor="White" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Large" />
@@ -277,7 +278,7 @@
                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=NewWorkTaskCommand}"
                                                                     CommandParameter="{Binding .}">
                                             </Button>
-                                            <Label Grid.Row="5"></Label>
+                                           
 
                                         </Grid>
 
@@ -308,7 +309,7 @@
 
                                     </StackLayout>
 
-                                </Frame>
+                                </Border>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
