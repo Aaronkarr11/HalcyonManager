@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
             <Label Text="Name" FontSize="Medium" />
-            <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
+            <Entry Text="{Binding Name, Mode=TwoWay}" MaxLength="50" FontSize="Medium" />
             <Label Text="Request Date" FontSize="Medium" />
             <DatePicker Date="{Binding RequestedDate, Mode=TwoWay}" FontSize="Medium" Margin="0"  />
             <StackLayout Orientation="Horizontal">

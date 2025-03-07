@@ -21,7 +21,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="10" x:DataType="model:WorkTaskModel">
-                                <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True" BackgroundColor="Azure">
+                                <Frame CornerRadius="10" Margin="5, 5, 5, 5" HasShadow="True"  BackgroundColor="Azure">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -33,21 +33,24 @@
                                             <RowDefinition Height="25" />
                                             <RowDefinition Height="25" />
                                             <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
                                             <RowDefinition Height="55" />
                                             <RowDefinition Height="50" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Column="0" Grid.Row="0">Title</Label>
-                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="16" FontAttributes="Bold" Text="{Binding Title}"></Label>
+                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" FontSize="16" FontAttributes="Bold" Text="{Binding Title}"></Label>
 
-                                        <Label Grid.Column="0" Grid.Row="1">Priority</Label>
-                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="16" FontAttributes="Bold" Text="{Binding Priority}"></Label>
+                                        <Label Grid.Column="0" Grid.Row="2">Priority</Label>
+                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="16" FontAttributes="Bold" Text="{Binding Priority}"></Label>
 
-                                        <Label Grid.Column="0" Grid.Row="2">Target Date</Label>
-                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="16" FontAttributes="Bold" Text="{Binding TargetDate}"></Label>
+                                        <Label Grid.Column="0" Grid.Row="3">Target Date</Label>
+                                        <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="16" FontAttributes="Bold" Text="{Binding DisplayTargetDate}"></Label>
                                         <Button
+                                   WidthRequest="200"
+                                   HeightRequest="40"
                                    BackgroundColor="#023e8a"
                                    Grid.Column="0"
-                                   Grid.Row="4"
+                                   Grid.Row="5"
                                    Grid.ColumnSpan="3"
                                    Text="Edit Task"
                                    FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkTaskPrioritiesViewModel}}, Path=DeviceFontSize}"

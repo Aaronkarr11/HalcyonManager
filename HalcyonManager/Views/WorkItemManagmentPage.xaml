@@ -32,22 +32,21 @@
                         <RowDefinition Height="10"  />
                         <RowDefinition Height="50" />
                         <RowDefinition Height="20" />
-                        <RowDefinition Height="20" />
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="50" />
                         <RowDefinition Height="25" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0"
-                           Grid.ColumnSpan="3"
+                           Grid.ColumnSpan="5"
                            Text="{Binding WorkTaskTitle}"
                            FontAttributes="Bold"
                            FontSize="Medium"
@@ -108,6 +107,8 @@
                     <Label Grid.Column="2"
                            Grid.Row="5"
                            Grid.ColumnSpan="2"
+                           Padding="0,0,0,0"
+                           Margin="0,0,0,0"
                            Text="{Binding WorkTaskState}"
                            FontAttributes="Bold"
                            FontSize="Small"
@@ -117,6 +118,7 @@
                     <Button BackgroundColor="{StaticResource ButtonNew}"
                             Grid.Row="6"
                             Padding="0,0,0,0"
+                            Margin="0,0,0,0"
                             HeightRequest="25"
                             FontSize="Small"
                             Grid.Column="2"
@@ -156,14 +158,15 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0"
                            Grid.ColumnSpan="3"
                            Text="{Binding WorkTaskTitle}"
-                           FontAttributes="Bold"
+                           FontAttributes="Italic"
                            FontSize="Medium"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
@@ -225,13 +228,13 @@
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Border Padding="10"  Margin="10, 5, 5, 5" BackgroundColor="{StaticResource Tertiary}">
-                                    <StackLayout x:DataType="model:ProjectHierarchy" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <StackLayout x:DataType="model:ProjectHierarchy">
                                         <Grid Margin="0,0,0,0">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*"  />
+                                                <ColumnDefinition Width="*"  />
+                                                <ColumnDefinition Width="*"  />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition />
@@ -248,10 +251,10 @@
 
                                             <Label Grid.Row="0" Grid.RowSpan="2" Margin="0,0,0,0" TextColor="White" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Large" />
                                             <Label Grid.Row="1"></Label>
-                                            <Label Grid.Row="2" Grid.Column="0"   Grid.RowSpan="2"  Grid.ColumnSpan="4" TextColor="White" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
+                                            <Label Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,0,5"    Grid.ColumnSpan="5" TextColor="White" Text="{Binding Description}" FontAttributes="Italic" FontSize="Small" />
                                             <Label Grid.Row="3"></Label>
                                             <Label Grid.Row="4" Grid.Column="0" TextColor="White"  Grid.RowSpan="2" Grid.ColumnSpan="3" Text="Target Date:" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Default" />
-                                            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" TextColor="White" Margin="0,0,10,20" Text="{Binding DisplayTargetDate}" TextDecorations="Underline" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default" />
+                                            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" TextColor="White" Margin="0,0,10,20" Text="{Binding DisplayTargetDate}" TextDecorations="Underline" FontAttributes="Bold" FontSize="Default" />
                                             <Button
                                                                     Grid.Row="5" 
                                                                     Grid.RowSpan="4" 
@@ -269,7 +272,7 @@
                                                                     Grid.Row="5" 
                                                                     Grid.RowSpan="4"
                                                                     HeightRequest="40"
-                                                                    Grid.Column="4"
+                                                                    Grid.Column="5"
                                                                     WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:WorkItemManagmentViewModel}}, Path=DeviceButtonWidth}"
                                                                     Grid.ColumnSpan="2"
                                                                     Text="New Work Task"
@@ -289,7 +292,7 @@
                                                 <DataTemplate>
                                                     <StackLayout x:DataType="model:WorkTaskModel" Orientation="Vertical" HorizontalOptions="FillAndExpand">
 
-                                                        <controls:WorkTaskCard BorderColor="DarkGray"
+                                                        <controls:WorkTaskCard BorderColor="pink"
                                                                 WorkTaskTitle="{Binding Title}"
                                                                 WorkTaskDescription="{Binding Description}"
                                                                 WorkTaskStartDate="{Binding DisplayStartDate}"

@@ -18,7 +18,7 @@
 		<ApplicationIdGuid>492c924c-1bc4-4c09-9c68-24fc2d6ceb0b</ApplicationIdGuid>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+		<ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 		<ApplicationVersion>10</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
@@ -29,7 +29,7 @@
 		<AssemblyName>HalcyonManager</AssemblyName>
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-		<PackageCertificateThumbprint>E065D7CF4F735D6A6808FC45CAD5EF0FAEBEC167</PackageCertificateThumbprint>
+		<PackageCertificateThumbprint>EF57BFA0BFD1B395DC4127253500B60CAF5FB0F5</PackageCertificateThumbprint>
 		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
 		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
 		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
@@ -43,7 +43,7 @@
 	  <AndroidUseAapt2>True</AndroidUseAapt2>
 	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	  <ApplicationVersion>5</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
@@ -52,7 +52,7 @@
 	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	  <AndroidPackageFormat>aab</AndroidPackageFormat>
 	  <ApplicationVersion>5</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(RuntimeIdentifierOverride)' != ''">
@@ -61,32 +61,72 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <ApplicationVersion>5</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
 	  <ApplicationVersion>4</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041|AnyCPU'">
 	  <ApplicationVersion>4</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <ApplicationVersion>4</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
 	  <ApplicationVersion>4</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041|AnyCPU'">
 	  <ApplicationVersion>4</ApplicationVersion>
-	  <ApplicationDisplayVersion>1.3.10</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationDisplayVersion>1.3.11</ApplicationDisplayVersion>
+	  <ApplicationVersion>11</ApplicationVersion>
 	</PropertyGroup>
 
 

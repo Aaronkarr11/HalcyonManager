@@ -71,6 +71,13 @@ namespace HalcyonManager.Controls
         }
 
 
+        public static readonly BindableProperty CustomWidthWidthProperty = BindableProperty.Create(nameof(CustomWidth), typeof(int), typeof(WorkTaskCard), 400);
+        public int CustomWidth
+        {
+            get => (int)GetValue(CustomWidthWidthProperty);
+            set => SetValue(CustomWidthWidthProperty, value);
+        }
+
 
         public Color BorderColor
         {

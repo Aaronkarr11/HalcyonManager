@@ -23,47 +23,53 @@
                    BorderColor="{TemplateBinding BorderColor}"
                    CornerRadius="5"
                    HasShadow="True"
-                   Padding="8"
+                   Padding="10"
                    HorizontalOptions="Center"
                    VerticalOptions="Center">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="4" />
-                        <RowDefinition Height="40" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="5" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="30" />
+
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0"
+                           Grid.ColumnSpan="3"
                            Text="{Binding CardTitle}"
                            FontAttributes="Bold"
                            FontSize="Small"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <BoxView Grid.Row="1"
-                             Grid.ColumnSpan="2"
+                             Grid.ColumnSpan="3"
                              BackgroundColor="{Binding BorderColor}"
                              HeightRequest="2"
                              HorizontalOptions="Fill" />
                     <Label Grid.Row="2"
-                           Grid.ColumnSpan="2"
+                           Grid.ColumnSpan="3"
                            Text="{Binding CardDescription}"
                            VerticalTextAlignment="Start"
                            VerticalOptions="Fill"
                            HorizontalOptions="Fill" />
-                    <Label Grid.Row="0"
+                    <Label Grid.Row="3"
                            TextColor="DarkGreen"
-                           Grid.Column="1"
-                           Grid.ColumnSpan="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="1"
                            Text="Complete:"
-                           Margin="-5,0,0,0"
+                           Margin="0,0,0,0"
                            VerticalOptions="Center" />
                     <CheckBox Color="Green" 
-                              Grid.Row="0" 
-                              Grid.Column="2">
+                              Grid.Row="3" 
+                              Grid.Column="1">
                         <CheckBox.Behaviors>
                             <toolkit:EventToCommandBehavior
                             EventName="CheckedChanged"
