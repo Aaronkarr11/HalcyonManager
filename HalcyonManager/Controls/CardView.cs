@@ -2,7 +2,7 @@
 
 namespace HalcyonManager.Controls
 {
-    public class CardView : ContentView
+    public partial class CardView : ContentView
     {
         public static readonly BindableProperty CardTitleProperty = BindableProperty.Create(nameof(CardTitle), typeof(string), typeof(CardView), string.Empty);
         public static readonly BindableProperty CardDescriptionProperty = BindableProperty.Create(nameof(CardDescription), typeof(string), typeof(CardView), string.Empty);

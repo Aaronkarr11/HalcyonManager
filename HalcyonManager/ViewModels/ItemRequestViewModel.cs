@@ -100,5 +100,14 @@ namespace HalcyonManager.ViewModels
             set => SetProperty(ref _requestItems, value);
         }
 
+        //private string _cardTitle;
+
+        //public string CardTitle
+        //{
+        //    get { return _cardTitle; }
+        //    set { _cardTitle = value; }
+        //}
+
+
     }
 }

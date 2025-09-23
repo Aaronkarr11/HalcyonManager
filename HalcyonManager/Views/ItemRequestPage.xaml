@@ -17,7 +17,8 @@
 
 
     <ContentPage.Resources>
-        <ControlTemplate x:Key="CardViewControlTemplate">
+        <ControlTemplate x:Key="CardViewControlTemplate"
+                         x:DataType="controls:CardView">
             <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                    BackgroundColor="{TemplateBinding CardColor}"
                    BorderColor="{TemplateBinding BorderColor}"

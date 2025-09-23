@@ -16,7 +16,8 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
-        <ControlTemplate x:Key="WorkTaskControlTemplate">
+        <ControlTemplate x:Key="WorkTaskControlTemplate"
+                         x:DataType="controls:WorkTaskCard">
             <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                    BackgroundColor="{TemplateBinding CardColor}"
                    BorderColor="{TemplateBinding BorderColor}"
@@ -141,7 +142,8 @@
                     Value="{StaticResource WorkTaskControlTemplate}" />
         </Style>
 
-        <ControlTemplate x:Key="ProjectControlTemplate">
+        <ControlTemplate x:Key="ProjectControlTemplate"
+                         x:DataType="controls:WorkTaskCard">
             <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                    BackgroundColor="{TemplateBinding CardColor}"
                    BorderColor="{TemplateBinding BorderColor}"
