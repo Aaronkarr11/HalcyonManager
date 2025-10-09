@@ -21,10 +21,12 @@ namespace HalcyonManager.ViewModels
         {
             _transactionServices = transactionServices;
 
-          //  LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            //  LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-
+            string uri = "https://halcyontransactions.azurewebsites.net/api/GetWMSchedule?code=AUGSN4BuZI56GDahZZIS5WawTIQH3XcINMzgTxT8NLDUAzFueie4ow==";
         }
+
+
 
         //async void OnItemChecked(object obj)
         //{
