@@ -17,6 +17,7 @@
         <ScrollView Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical">
                 <Button Text="Household Managment" BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="Button_Clicked"></Button>
+                <Button Text="WM Pickup Schedule" BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="WMSchedule_Clicked"></Button>
                 <Button Text="Help" BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="HelpButton_Clicked"></Button>
                 <Button Text="Error Logs"  BackgroundColor="#40568d"  Margin="1,10,0,0" Clicked="ErrorLogs_Clicked"></Button>
             </StackLayout>

@@ -53,7 +53,7 @@ namespace HalcyonManager.ViewModels
 
 
 
-        public async void OnAppearing()
+        public async Task OnAppearing()
         {
             RequestItems = await _transactionServices.GetRequestItems(DeviceInfo.Name.RemoveSpecialCharacters());
             IsBusy = true;

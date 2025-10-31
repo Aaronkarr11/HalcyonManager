@@ -21,5 +21,9 @@
         {
             Shell.Current.GoToAsync("ErrorLogPage");
         }
+        private void WMSchedule_Clicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("WMSchedulePage");
+        }
     }
 }
